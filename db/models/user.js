@@ -6,6 +6,15 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       this.belongsTo(models.user_role, { foreignKey: "userRoleId" });
       this.hasOne(models.user_personal_detail, { foreignKey: "userId" });
+      this.hasMany(models.user_resume_type, {
+        foreignKey: "userId"});
+      this.hasMany(models.user_experience_detail, {
+        foreignKey: "userId"});
+      this.hasMany(models.user_educational_detail, {
+        foreignKey: "userId"});
+      this.hasMany(models.user_skill_detail, {
+        foreignKey: "userId",
+      });
     }
   }
   User.init(
