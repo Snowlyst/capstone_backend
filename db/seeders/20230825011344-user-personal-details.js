@@ -5,7 +5,7 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert("user_personal_details", [
       {
-        member_id: 2,
+        user_id: 2,
         identification_number: "S7012345A",
         mobile_number: "91274611",
         date_of_birth: "1/1/1970",
@@ -34,7 +34,7 @@ module.exports = {
         updated_at: new Date(),
       },
       {
-        member_id: 3,
+        user_id: 3,
         identification_number: "S7112345B",
         mobile_number: "97783711",
         date_of_birth: "1/1/1971",
@@ -63,7 +63,7 @@ module.exports = {
         updated_at: new Date(),
       },
       {
-        member_id: 4,
+        user_id: 4,
         identification_number: "S7212345C",
         mobile_number: "97821471",
         date_of_birth: "1/1/1972",
@@ -92,7 +92,7 @@ module.exports = {
         updated_at: new Date(),
       },
       {
-        member_id: 5,
+        user_id: 5,
         identification_number: "S7312345D",
         mobile_number: "96532651",
         date_of_birth: "1/1/1973",
@@ -121,7 +121,7 @@ module.exports = {
         updated_at: new Date(),
       },
       {
-        member_id: 6,
+        user_id: 6,
         identification_number: "S7412345A",
         mobile_number: "86321751",
         date_of_birth: "1/1/1974",
@@ -150,7 +150,7 @@ module.exports = {
         updated_at: new Date(),
       },
       {
-        member_id: 7,
+        user_id: 7,
         identification_number: "S7512345B",
         mobile_number: "86361536",
         date_of_birth: "1/1/1975",
@@ -179,7 +179,7 @@ module.exports = {
         updated_at: new Date(),
       },
       {
-        member_id: 8,
+        user_id: 8,
         identification_number: "S7612345C",
         mobile_number: "93651251",
         date_of_birth: "1/1/1976",

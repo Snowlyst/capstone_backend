@@ -1,25 +1,23 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class user_personal_detail extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+  class User_personal_detail extends Model {
     static associate(models) {
-      // define association here
-      this.belongsTo(models.user,{foreignKey:"userId"})
+      this.belongsTo(models.user, { foreignKey: "userId" });
     }
   }
-  user_personal_detail.init(
+  User_personal_detail.init(
     {
-      memberId: DataTypes.INTEGER,
+      userId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: "user",
+          key: "id",
+        },
+      },
       identificationNumber: DataTypes.STRING,
       mobileNumber: DataTypes.STRING,
-      dateofBirth: DataTypes.STRING,
+      dateOfBirth: DataTypes.STRING,
       cancerDiagnosis: DataTypes.STRING,
       activeTreatment: DataTypes.STRING,
       gender: DataTypes.STRING,
@@ -37,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
       employedReadinessScale: DataTypes.STRING,
       currentHealthStatus: DataTypes.STRING,
       currentPhysicalHealthStatus: DataTypes.STRING,
-      currentMentalHealth: DataTypes.STRING,
+      currentMentalHealthStatus: DataTypes.STRING,
       physicalBarriersToRtw: DataTypes.STRING,
       psychosocialBarriersToRtw: DataTypes.STRING,
       additionalInformation: DataTypes.STRING,
@@ -48,5 +46,5 @@ module.exports = (sequelize, DataTypes) => {
       underscored: true,
     }
   );
-  return user_personal_detail;
+  return User_personal_detail;
 };
