@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("user_skill_details", {
+    await queryInterface.createTable("user_additional_details", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -16,10 +16,10 @@ module.exports = {
           key: "id",
         },
       },
-      skill: {
+      expected_salary: {
         type: Sequelize.STRING,
       },
-      proficiency: {
+      preferred_work_location: {
         type: Sequelize.STRING,
       },
       created_at: {
@@ -33,6 +33,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('user_skill_details');
-  }
+    await queryInterface.dropTable("user_additional_details");
+  },
 };

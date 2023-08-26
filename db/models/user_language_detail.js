@@ -1,12 +1,12 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class User_skill_detail extends Model {
+  class User_language_detail extends Model {
     static associate(models) {
       this.belongsTo(models.user, { foreignKey: "userId" });
     }
   }
-  User_skill_detail.init(
+  User_language_detail.init(
     {
       userId: {
         type: DataTypes.INTEGER,
@@ -15,14 +15,16 @@ module.exports = (sequelize, DataTypes) => {
           key: "id",
         },
       },
-      skill: DataTypes.STRING,
-      proficiency: DataTypes.STRING,
+      language: DataTypes.STRING,
+      spoken: DataTypes.INTEGER,
+      writtent: DataTypes.INTEGER,
+      ifPrimary: DataTypes.BOOLEAN,
     },
     {
       sequelize,
-      modelName: "user_skill_detail",
+      modelName: "user_language_detail",
       underscored: true,
     }
   );
-  return User_skill_detail;
+  return User_language_detail;
 };

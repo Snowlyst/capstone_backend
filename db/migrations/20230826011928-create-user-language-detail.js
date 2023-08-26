@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("user_skill_details", {
+    await queryInterface.createTable("user_language_details", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -16,11 +16,17 @@ module.exports = {
           key: "id",
         },
       },
-      skill: {
+      language: {
         type: Sequelize.STRING,
       },
-      proficiency: {
-        type: Sequelize.STRING,
+      spoken: {
+        type: Sequelize.INTEGER,
+      },
+      written: {
+        type: Sequelize.INTEGER,
+      },
+      if_primary: {
+        type: Sequelize.BOOLEAN,
       },
       created_at: {
         allowNull: false,
@@ -33,6 +39,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('user_skill_details');
-  }
+    await queryInterface.dropTable("user_language_details");
+  },
 };

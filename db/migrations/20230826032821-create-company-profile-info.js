@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("user_skill_details", {
+    await queryInterface.createTable("company_profile_infos", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -16,10 +16,25 @@ module.exports = {
           key: "id",
         },
       },
-      skill: {
+      approval_by_admin: {
+        type: Sequelize.BOOLEAN,
+      },
+      company_name: {
         type: Sequelize.STRING,
       },
-      proficiency: {
+      company_logo: {
+        type: Sequelize.STRING,
+      },
+      description: {
+        type: Sequelize.TEXT,
+      },
+      address: {
+        type: Sequelize.STRING,
+      },
+      establishment_date: {
+        type: Sequelize.STRING,
+      },
+      website_url: {
         type: Sequelize.STRING,
       },
       created_at: {
@@ -33,6 +48,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('user_skill_details');
+    await queryInterface.dropTable('company_profile_infos');
   }
 };

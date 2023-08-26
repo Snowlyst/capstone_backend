@@ -3,53 +3,53 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.bulkInsert("user_skill_details", [
+    await queryInterface.bulkInsert("user_additional_details", [
       {
         user_id: 2,
-        skill: "Microsoft Excel",
-        proficiency: "Advanced",
+        expected_salary: "4000",
+        preferred_work_location: "Central",
         created_at: new Date(),
         updated_at: new Date(),
       },
       {
         user_id: 3,
-        skill: "Cooking",
-        proficiency: "Advanced",
+        expected_salary: "4500",
+        preferred_work_location: "Central",
         created_at: new Date(),
         updated_at: new Date(),
       },
       {
         user_id: 4,
-        skill: "Sewing",
-        proficiency: "Begineer",
+        expected_salary: "5000",
+        preferred_work_location: "Central",
         created_at: new Date(),
         updated_at: new Date(),
       },
       {
         user_id: 5,
-        skill: "Microsoft Excel",
-        proficiency: "Advanced",
+        expected_salary: "5500",
+        preferred_work_location: "Central",
         created_at: new Date(),
         updated_at: new Date(),
       },
       {
         user_id: 6,
-        skill: "Microsoft Excel",
-        proficiency: "Advanced",
+        expected_salary: "4000",
+        preferred_work_location: "Central",
         created_at: new Date(),
         updated_at: new Date(),
       },
       {
         user_id: 7,
-        skill: "Microsoft Excel",
-        proficiency: "Advanced",
+        expected_salary: "4500",
+        preferred_work_location: "Central",
         created_at: new Date(),
         updated_at: new Date(),
       },
       {
         user_id: 8,
-        skill: "Microsoft Excel",
-        proficiency: "Advanced",
+        expected_salary: "5000",
+        preferred_work_location: "Central",
         created_at: new Date(),
         updated_at: new Date(),
       },
@@ -57,6 +57,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete("user_skill_details", null, {});
+    await queryInterface.bulkDelete("user_additional_details", null, {});
   },
 };
