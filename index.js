@@ -1,12 +1,15 @@
 const express = require("express");
 const cors = require("cors");
-const axios = require("axios");
+//onst axios = require("axios");
 const cheerio = require("cheerio");
 const puppeteer = require("puppeteer");
 
 require("dotenv").config();
 const PORT = process.env.PORT;
 const app = express();
+
+// import middlewares
+const jwtCheck = require("./middlewares/jwtCheck");
 
 const corsOptions = {
   origin: process.env.CORS_OPTIONS,
@@ -22,7 +25,7 @@ const usersController = new UsersController(
   user_personal_detail
 );
 const UsersRouter = require("./routers/usersRouter");
-const usersRouter = new UsersRouter(usersController);
+const usersRouter = new UsersRouter(usersController, jwtCheck);
 
 app.use(cors(corsOptions));
 app.use(express.json());
@@ -30,6 +33,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/users", usersRouter.routes());
 
+// this is for linked in scraping to test
 app.get("/proxy/linkedin", async (req, res) => {
   const targetURL = "https://www.linkedin.com/jobs/view/3682714831/";
   const browser = await puppeteer.launch();
@@ -38,11 +42,6 @@ app.get("/proxy/linkedin", async (req, res) => {
   // // console.log(html);
 
   // //wait for content to load
-  // const showMoreButton = await page.waitForSelector(
-  //   '::-p-aria([name="Show more, visually expands previously read content above"][role="button"])'
-  // );
-  // // click the show more button
-  // await page.click(showMoreButton);
 
   try {
     await page.goto(targetURL);
