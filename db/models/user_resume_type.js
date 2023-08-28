@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       resumeTitle: DataTypes.STRING,
+      resumeDescription: DataTypes.STRING,
       resumeUrl: DataTypes.STRING,
     },
     {
