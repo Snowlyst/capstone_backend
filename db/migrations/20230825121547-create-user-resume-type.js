@@ -19,6 +19,9 @@ module.exports = {
       resume_title: {
         type: Sequelize.STRING,
       },
+      resume_description: {
+        type: Sequelize.STRING,
+      },
       resume_url: {
         type: Sequelize.STRING,
       },
