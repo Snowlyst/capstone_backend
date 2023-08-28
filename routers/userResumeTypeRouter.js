@@ -12,6 +12,15 @@ class UserResumeTypeRouter {
       "/:userId",
       this.controller.getOnePersonResume.bind(this.controller)
     );
+    router.put(
+      "/:resumeId",
+      this.controller.editOneResume.bind(this.controller)
+    );
+    router.delete(
+      "/:resumeId",
+      this.controller.deleteOneResume.bind(this.controller)
+    );
+    router.post("/:userId", this.controller.addOneResume.bind(this.controller));
 
     return router;
   }
