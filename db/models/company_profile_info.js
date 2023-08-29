@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.job_listing, {
         foreignKey: "companyId",
       });
-      this.hasOne(models.location, { foreignKey: "locationId" });
+      this.belongsTo(models.location, { foreignKey: "locationId" });
     }
   }
   Company_profile_info.init(
