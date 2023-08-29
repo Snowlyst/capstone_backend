@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -31,6 +31,16 @@ module.exports = {
       address: {
         type: Sequelize.STRING,
       },
+      postal_code: {
+        type: Sequelize.INTEGER,
+      },
+      unit_number: {
+        type: Sequelize.STRING,
+      },
+      banner_url: {
+        type: Sequelize.STRING,
+      },
+
       establishment_date: {
         type: Sequelize.STRING,
       },
@@ -48,6 +58,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('company_profile_infos');
-  }
+    await queryInterface.dropTable("company_profile_infos");
+  },
 };

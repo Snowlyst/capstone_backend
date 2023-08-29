@@ -5,7 +5,10 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.belongsTo(models.job_category, { foreignKey: "jobCategoryId" });
       this.belongsTo(models.company_profile_info, { foreignKey: "companyId" });
-      this.hasMany(models.individual_jobseeker_dashboard, { foreignKey: "jobListingId" });
+      this.hasMany(models.individual_jobseeker_dashboard, {
+        foreignKey: "jobListingId",
+      });
+      this.belongsTo(models.location, { foreignKey: "locationId" });
     }
   }
   Job_listing.init(
@@ -29,7 +32,13 @@ module.exports = (sequelize, DataTypes) => {
       employmentType: DataTypes.STRING,
       title: DataTypes.TEXT,
       description: DataTypes.TEXT,
-      jobLocation: DataTypes.STRING,
+      locationId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: "location",
+          key: "id",
+        },
+      },
     },
     {
       sequelize,
