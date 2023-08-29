@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -21,8 +21,8 @@ module.exports = {
         references: {
           model: "company_profile_infos",
           key: "id",
+        },
       },
-    },
       approval_by_admin: {
         type: Sequelize.BOOLEAN,
       },
@@ -38,8 +38,12 @@ module.exports = {
       description: {
         type: Sequelize.TEXT,
       },
-      job_location: {
-        type: Sequelize.STRING,
+      location_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "locations",
+          key: "id",
+        },
       },
       created_at: {
         allowNull: false,
@@ -52,6 +56,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('job_listings');
-  }
+    await queryInterface.dropTable("job_listings");
+  },
 };
