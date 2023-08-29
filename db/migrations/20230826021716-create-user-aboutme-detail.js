@@ -28,6 +28,12 @@ module.exports = {
       address: {
         type: Sequelize.STRING,
       },
+      postal_code: {
+        type: Sequelize.STRING,
+      },
+      unit_number: {
+        type: Sequelize.STRING,
+      },
       date_of_birth: {
         type: Sequelize.STRING,
       },
