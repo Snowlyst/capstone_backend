@@ -1,22 +1,17 @@
 const express = require("express");
 const router = express.Router();
 
-class UsersRouter {
+class JobListingsRouter {
   constructor(controller, jwtCheck) {
     this.controller = controller;
     this.jwtCheck = jwtCheck; // middleware
   }
   routes() {
-    router.get("/", this.controller.getAll.bind(this.controller));
+    router.get("/", this.controller.getAllListing.bind(this.controller));
     router.get(
-      "/personalinfo",
-      this.controller.getAllPersonalInformation.bind(this.controller)
+      "/categories/",
+      this.controller.getAllCategory.bind(this.controller)
     );
-    
-    router.get(
-        "/personalinfo/:userId",
-        this.controller.getOnePersonalInformation.bind(this.controller)
-      );
     // to add in protected route w jwt, eg
     // router.post(
     //   "/",
@@ -27,4 +22,4 @@ class UsersRouter {
     return router;
   }
 }
-module.exports = UsersRouter;
+module.exports = JobListingsRouter;
