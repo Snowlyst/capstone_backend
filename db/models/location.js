@@ -1,21 +1,21 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class location extends Model {
+  class Location extends Model {
     static associate(models) {
       this.hasMany(models.job_listing);
-      this.hasMany(models.company_profile);
+      this.hasMany(models.company_profile_info);
     }
   }
-  location.init(
+  Location.init(
     {
-      id: DataTypes.INTEGER,
       name: DataTypes.STRING,
     },
     {
       sequelize,
       modelName: "location",
+      underscored: true,
     }
   );
-  return location;
+  return Location;
 };
