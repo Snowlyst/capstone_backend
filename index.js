@@ -16,10 +16,17 @@ const corsOptions = {
 };
 // importing info from db area
 const db = require("./db/models/index");
-const { user, user_role, user_personal_detail, user_resume_type } = db;
+const {
+  user,
+  user_role,
+  user_personal_detail,
+  user_resume_type,
+  company_profile_info,
+} = db;
 // import controller file area
 const UsersController = require("./controllers/usersController.js");
 const UserResumeTypeController = require("./controllers/userResumeTypeController.js");
+const CompanyProfileInfoController = require("./controllers/companyProfileInfoController");
 
 // put db stuff in controller section
 const usersController = new UsersController(
@@ -28,17 +35,24 @@ const usersController = new UsersController(
   user_personal_detail
 );
 const userResumeTypeController = new UserResumeTypeController(user_resume_type);
+const companyProfileInfoController = new CompanyProfileInfoController(
+  company_profile_info
+);
 
 // import router section
 const UsersRouter = require("./routers/usersRouter");
 const UserResumeTypeRouter = require("./routers/userResumeTypeRouter");
-const checkJwt = require("./middlewares/jwtCheck");
+const CompanyProfileInfoRouter = require("./routers/companyProfileInfoRouter");
 
 // assign controller to router area
 const usersRouter = new UsersRouter(usersController, jwtCheck);
 const userResumeTypeRouter = new UserResumeTypeRouter(
   userResumeTypeController,
-  checkJwt
+  jwtCheck
+);
+const companyProfileInfoRouter = new CompanyProfileInfoRouter(
+  companyProfileInfoController,
+  jwtCheck
 );
 
 //middleware
@@ -48,6 +62,7 @@ app.use(express.urlencoded({ extended: true }));
 // assign routes
 app.use("/users", usersRouter.routes());
 app.use("/resumes", userResumeTypeRouter.routes());
+app.use("/company", companyProfileInfoRouter.routes());
 
 // this is for linked in scraping to test
 app.get("/proxy/linkedin", async (req, res) => {
