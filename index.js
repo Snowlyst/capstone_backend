@@ -21,11 +21,14 @@ const {
   user_role,
   user_personal_detail,
   user_resume_type,
+  job_listing,
+  job_category,
   company_profile_info,
 } = db;
 // import controller file area
 const UsersController = require("./controllers/usersController.js");
 const UserResumeTypeController = require("./controllers/userResumeTypeController.js");
+const JobListingsController = require("./controllers/jobListingsController.js");
 const CompanyProfileInfoController = require("./controllers/companyProfileInfoController");
 
 // put db stuff in controller section
@@ -39,15 +42,24 @@ const companyProfileInfoController = new CompanyProfileInfoController(
   company_profile_info
 );
 
+const joblistingsController = new JobListingsController(
+  job_listing,
+  job_category
+);
 // import router section
 const UsersRouter = require("./routers/usersRouter");
 const UserResumeTypeRouter = require("./routers/userResumeTypeRouter");
+const JobListingsRouter = require("./routers/jobListingsRouter");
 const CompanyProfileInfoRouter = require("./routers/companyProfileInfoRouter");
 
 // assign controller to router area
 const usersRouter = new UsersRouter(usersController, jwtCheck);
 const userResumeTypeRouter = new UserResumeTypeRouter(
   userResumeTypeController,
+  jwtCheck
+);
+const joblistingsRouter = new JobListingsRouter(
+  joblistingsController,
   jwtCheck
 );
 const companyProfileInfoRouter = new CompanyProfileInfoRouter(
@@ -63,7 +75,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/users", usersRouter.routes());
 app.use("/resumes", userResumeTypeRouter.routes());
 app.use("/company", companyProfileInfoRouter.routes());
-
+app.use("/listings", joblistingsRouter.routes());
 // this is for linked in scraping to test
 app.get("/proxy/linkedin", async (req, res) => {
   const targetURL = "https://www.linkedin.com/jobs/view/3682714831/";

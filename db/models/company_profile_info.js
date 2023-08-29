@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.job_listing, {
         foreignKey: "companyId",
       });
+      this.hasOne(models.location, { foreignKey: "locationId" });
     }
   }
   Company_profile_info.init(
@@ -23,6 +24,16 @@ module.exports = (sequelize, DataTypes) => {
       companyLogo: DataTypes.STRING,
       description: DataTypes.TEXT,
       address: DataTypes.STRING,
+      postalCode: DataTypes.STRING,
+      unitNumber: DataTypes.STRING,
+      locationId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: "location",
+          key: "id",
+        },
+      },
+      bannerURL: DataTypes.STRING,
       establishmentDate: DataTypes.STRING,
       websiteUrl: DataTypes.STRING,
     },
