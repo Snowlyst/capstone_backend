@@ -25,13 +25,6 @@ module.exports = (sequelize, DataTypes) => {
       address: DataTypes.STRING,
       postalCode: DataTypes.STRING,
       unitNumber: DataTypes.STRING,
-      locationId: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: "location",
-          key: "id",
-        },
-      },
       bannerURL: DataTypes.STRING,
       establishmentDate: DataTypes.STRING,
       websiteUrl: DataTypes.STRING,
