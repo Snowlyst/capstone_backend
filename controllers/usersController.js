@@ -11,7 +11,23 @@ class UsersController extends BaseController {
   async getAllPersonalInformation(req, res) {
     try {
       const output = await this.model.findAll({
-        where: { id: 2 },
+        include: [
+          {
+            model: this.userPersonalDetailModel,
+          },
+        ],
+      });
+      return res.json(output);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json({ error: true, msg: err.message });
+    }
+  }
+
+  async getOnePersonalInformation(req, res) {
+    const {userId}= req.params
+    try {
+      const output = await this.model.findByPk(userId,{
         include: [
           {
             model: this.userPersonalDetailModel,

@@ -16,7 +16,7 @@ const corsOptions = {
 };
 
 const db = require("./db/models/index");
-const { user, user_role, user_personal_detail } = db;
+const { user, user_role, user_personal_detail, job_listing, job_category } = db;
 
 const UsersController = require("./controllers/usersController.js");
 const usersController = new UsersController(
@@ -27,11 +27,23 @@ const usersController = new UsersController(
 const UsersRouter = require("./routers/usersRouter");
 const usersRouter = new UsersRouter(usersController, jwtCheck);
 
+const JobListingsController = require("./controllers/jobListingsController.js");
+const joblistingsController = new JobListingsController(
+  job_listing,
+  job_category
+);
+const JobListingsRouter = require("./routers/jobListingsRouter");
+const joblistingsRouter = new JobListingsRouter(
+  joblistingsController,
+  jwtCheck
+);
+
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/users", usersRouter.routes());
+app.use("/listings", joblistingsRouter.routes());
 
 // this is for linked in scraping to test
 app.get("/proxy/linkedin", async (req, res) => {
