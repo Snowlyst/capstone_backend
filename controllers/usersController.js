@@ -8,6 +8,37 @@ class UsersController extends BaseController {
     this.userPersonalDetailModel = userPersonalDetailModel;
     console.log(userRoleModel);
   }
+
+  async retrieveLogin(req, res) {
+    const user = req.body;
+    console.log(user);
+    const { given_name, family_name, email, role } = req.body;
+
+    try {
+      const [checkedUser, created] = await this.model.findOrCreate({
+        where: { email: email },
+        defaults: {
+          firstName: given_name || null,
+          lastName: family_name || null,
+          email: email,
+          userName: email,
+          userRoleId: role,
+          approvedByAdmin: false,
+        },
+      });
+      if (created) {
+        console.log("User Created!");
+      } else {
+        console.log("User retrieved!");
+      }
+      return res.json({ checkedUser });
+    } catch (err) {
+      console.log(err.message);
+      console.log("I'm in login catch-try-catch: error");
+      return res.status(400).json({ error: true, msg: err.message });
+    }
+  }
+
   async getAllPersonalInformation(req, res) {
     try {
       const output = await this.model.findAll({
@@ -25,9 +56,9 @@ class UsersController extends BaseController {
   }
 
   async getOnePersonalInformation(req, res) {
-    const {userId}= req.params
+    const { userId } = req.params;
     try {
-      const output = await this.model.findByPk(userId,{
+      const output = await this.model.findByPk(userId, {
         include: [
           {
             model: this.userPersonalDetailModel,

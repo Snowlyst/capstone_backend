@@ -76,6 +76,7 @@ app.use("/users", usersRouter.routes());
 app.use("/resumes", userResumeTypeRouter.routes());
 app.use("/company", companyProfileInfoRouter.routes());
 app.use("/listings", joblistingsRouter.routes());
+
 // this is for linked in scraping to test
 app.get("/proxy/linkedin", async (req, res) => {
   const targetURL = "https://www.linkedin.com/jobs/view/3682714831/";
