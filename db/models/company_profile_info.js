@@ -4,9 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   class Company_profile_info extends Model {
     static associate(models) {
       this.belongsTo(models.user, { foreignKey: "userId" });
-      this.hasMany(models.job_listing, {
-        foreignKey: "companyId",
-      });
+      this.hasMany(models.job_listing, { foreignKey: "id" });
     }
   }
   Company_profile_info.init(
@@ -25,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       address: DataTypes.STRING,
       postalCode: DataTypes.STRING,
       unitNumber: DataTypes.STRING,
-      bannerURL: DataTypes.STRING,
+      bannerUrl: DataTypes.STRING,
       establishmentDate: DataTypes.STRING,
       websiteUrl: DataTypes.STRING,
     },

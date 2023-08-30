@@ -23,6 +23,7 @@ const {
   user_resume_type,
   job_listing,
   job_category,
+  company_profile_info
 } = db;
 // import controller file area
 const UsersController = require("./controllers/usersController.js");
@@ -39,7 +40,8 @@ const userResumeTypeController = new UserResumeTypeController(user_resume_type);
 
 const joblistingsController = new JobListingsController(
   job_listing,
-  job_category
+  job_category,
+  company_profile_info
 );
 // import router section
 const UsersRouter = require("./routers/usersRouter");

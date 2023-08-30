@@ -12,6 +12,8 @@ class JobListingsRouter {
       "/categories/",
       this.controller.getAllCategory.bind(this.controller)
     );
+
+    router.get("/:jobCategoryId", this.controller.getOneCategory.bind(this.controller));
     // to add in protected route w jwt, eg
     // router.post(
     //   "/",
