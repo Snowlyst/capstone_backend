@@ -14,6 +14,7 @@ class JobListingsRouter {
     );
     router.get(
       "/:companyId",
+      this.jwtCheck,
       this.controller.getOneCompanyListing.bind(this.controller)
     );
     // to add in protected route w jwt, eg
