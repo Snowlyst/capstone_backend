@@ -23,12 +23,13 @@ const {
   user_resume_type,
   job_listing,
   job_category,
-  company_profile_info
+  company_profile_info,
 } = db;
 // import controller file area
 const UsersController = require("./controllers/usersController.js");
 const UserResumeTypeController = require("./controllers/userResumeTypeController.js");
 const JobListingsController = require("./controllers/jobListingsController.js");
+const CompanyProfileInfoController = require("./controllers/companyProfileInfoController");
 
 // put db stuff in controller section
 const usersController = new UsersController(
@@ -37,6 +38,9 @@ const usersController = new UsersController(
   user_personal_detail
 );
 const userResumeTypeController = new UserResumeTypeController(user_resume_type);
+const companyProfileInfoController = new CompanyProfileInfoController(
+  company_profile_info
+);
 
 const joblistingsController = new JobListingsController(
   job_listing,
@@ -47,6 +51,7 @@ const joblistingsController = new JobListingsController(
 const UsersRouter = require("./routers/usersRouter");
 const UserResumeTypeRouter = require("./routers/userResumeTypeRouter");
 const JobListingsRouter = require("./routers/jobListingsRouter");
+const CompanyProfileInfoRouter = require("./routers/companyProfileInfoRouter");
 
 // assign controller to router area
 const usersRouter = new UsersRouter(usersController, jwtCheck);
@@ -58,6 +63,10 @@ const joblistingsRouter = new JobListingsRouter(
   joblistingsController,
   jwtCheck
 );
+const companyProfileInfoRouter = new CompanyProfileInfoRouter(
+  companyProfileInfoController,
+  jwtCheck
+);
 
 //middleware
 app.use(cors(corsOptions));
@@ -66,6 +75,7 @@ app.use(express.urlencoded({ extended: true }));
 // assign routes
 app.use("/users", usersRouter.routes());
 app.use("/resumes", userResumeTypeRouter.routes());
+app.use("/company", companyProfileInfoRouter.routes());
 app.use("/listings", joblistingsRouter.routes());
 
 // this is for linked in scraping to test
