@@ -1,13 +1,11 @@
 const BaseController = require("./baseController");
 const cheerio = require("cheerio");
 const puppeteer = require("puppeteer");
-
 class JobListingsController extends BaseController {
-  constructor(model, jobCategoryModel, companyProfileInfoModel ) {
+  constructor(model, jobCategoryModel, companyProfileInfoModel) {
     super(model);
     this.jobCategoryModel = jobCategoryModel;
-    this.companyProfileInfoModel=companyProfileInfoModel
-    
+    this.companyProfileInfoModel = companyProfileInfoModel;
   }
   async getAllListing(req, res) {
     try {
@@ -42,25 +40,25 @@ class JobListingsController extends BaseController {
   }
   async getOneCategory(req, res) {
     try {
-      const { jobCategoryId} = req.params;
+      const { jobCategoryId } = req.params;
       const output = await this.model.findAll({
         where: {
           jobCategoryId: jobCategoryId,
-          
         },
-        include: [{
-          model:this.companyProfileInfoModel,
-          
-        }]
-        
+        include: [
+          {
+            model: this.companyProfileInfoModel,
+          },
+        ],
       });
       res.status(200).json({ success: true, output });
     } catch (err) {
       console.log(err);
       res.status(400).json({ success: false, error: err });
-
+    }
+  }
   // this is for linked in scraping to test
-   async getData (req, res) {
+  async getData(req, res) {
     console.log("In Controller Job listings > getData");
     // const targetURL = "https://www.linkedin.com/jobs/view/3682714831/";
     // const targetURL = "https://www.linkedin.com/jobs/view/3689173351";
@@ -131,5 +129,4 @@ class JobListingsController extends BaseController {
     }
   }
 }
-
 module.exports = JobListingsController;
