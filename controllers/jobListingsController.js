@@ -22,9 +22,20 @@ class JobListingsController extends BaseController {
       return res.json(output);
     } catch (err) {
       console.log(err);
-      return res
-        .status(400)
-        .json({ error: true, msg: err.message, yes: "yes" });
+      return res.status(400).json({ error: true, msg: err.message });
+    }
+  }
+
+  async getOneCompanyListing(req, res) {
+    try {
+      const { companyId } = req.params;
+      const output = await this.model.findAll({
+        where: { companyId: companyId },
+      });
+      res.status(200).json(output);
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({ error: true, msg: error.message });
     }
   }
 
