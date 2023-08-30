@@ -60,7 +60,7 @@ class JobListingsController extends BaseController {
       res.status(400).json({ success: false, error: err });
 
   // this is for linked in scraping to test
-  async getData(req, res) {
+   async getData (req, res) {
     console.log("In Controller Job listings > getData");
     // const targetURL = "https://www.linkedin.com/jobs/view/3682714831/";
     // const targetURL = "https://www.linkedin.com/jobs/view/3689173351";
