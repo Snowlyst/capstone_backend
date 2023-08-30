@@ -12,11 +12,17 @@ class UsersRouter {
       "/personalinfo",
       this.controller.getAllPersonalInformation.bind(this.controller)
     );
-    
+
     router.get(
-        "/personalinfo/:userId",
-        this.controller.getOnePersonalInformation.bind(this.controller)
-      );
+      "/personalinfo/:userId",
+      this.controller.getOnePersonalInformation.bind(this.controller)
+    );
+
+    router.post(
+      "/login",
+      this.jwtCheck,
+      this.controller.retrieveLogin.bind(this.controller)
+    );
     // to add in protected route w jwt, eg
     // router.post(
     //   "/",

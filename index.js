@@ -45,19 +45,17 @@ const joblistingsController = new JobListingsController(
 const UsersRouter = require("./routers/usersRouter");
 const UserResumeTypeRouter = require("./routers/userResumeTypeRouter");
 const JobListingsRouter = require("./routers/jobListingsRouter");
-const checkJwt = require("./middlewares/jwtCheck");
 
 // assign controller to router area
 const usersRouter = new UsersRouter(usersController, jwtCheck);
 const userResumeTypeRouter = new UserResumeTypeRouter(
   userResumeTypeController,
-  checkJwt
+  jwtCheck
 );
 const joblistingsRouter = new JobListingsRouter(
   joblistingsController,
   jwtCheck
 );
-
 
 //middleware
 app.use(cors(corsOptions));
@@ -67,6 +65,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/users", usersRouter.routes());
 app.use("/resumes", userResumeTypeRouter.routes());
 app.use("/listings", joblistingsRouter.routes());
+
 // this is for linked in scraping to test
 app.get("/proxy/linkedin", async (req, res) => {
   const targetURL = "https://www.linkedin.com/jobs/view/3682714831/";
