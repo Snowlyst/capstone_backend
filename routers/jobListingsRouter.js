@@ -18,6 +18,18 @@ class JobListingsRouter {
       this.jwtCheck,
       this.controller.getOneCompanyListing.bind(this.controller)
     );
+
+    router.get(
+      "/categories/sorted",
+      this.jwtCheck,
+      this.controller.getAllCategorySorted.bind(this.controller)
+    );
+
+    router.post(
+      "/search/",
+      this.jwtCheck,
+      this.controller.getJobBySearch.bind(this.controller)
+    );
     // to add in protected route w jwt, eg
     // router.post(
     //   "/",
