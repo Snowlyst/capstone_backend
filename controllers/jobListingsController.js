@@ -85,6 +85,37 @@ class JobListingsController extends BaseController {
     }
   }
 
+  async getJobOnMount(req, res) {
+    const { typeQuery, locationQuery } = req.body;
+    let newLocationQuery;
+    if (locationQuery === "6") {
+      newLocationQuery = [1, 2, 3, 4, 5];
+    } else {
+      newLocationQuery = locationQuery;
+    }
+    console.log(String(typeQuery), newLocationQuery);
+    try {
+      const output = await this.model.findAll({
+        where: {
+          employmentType: String(typeQuery),
+          locationId: newLocationQuery,
+        },
+        include: [
+          {
+            model: this.companyProfileInfoModel,
+          },
+          {
+            model: this.locationModel,
+          },
+        ],
+      });
+      res.status(200).json(output);
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({ error: true, msg: error.message });
+    }
+  }
+
   // this is for linked in scraping to test
   async getData(req, res) {
     console.log("In Controller Job listings > getData");

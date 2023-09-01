@@ -30,6 +30,12 @@ class JobListingsRouter {
       this.jwtCheck,
       this.controller.getJobBySearch.bind(this.controller)
     );
+
+    router.post(
+      "/search/mount",
+      this.jwtCheck,
+      this.controller.getJobOnMount.bind(this.controller)
+    );
     // to add in protected route w jwt, eg
     // router.post(
     //   "/",
