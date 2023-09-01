@@ -15,7 +15,26 @@ class JobListingsRouter {
     router.get("/linkedin", this.controller.getData.bind(this.controller));
     router.get(
       "/:companyId",
+      this.jwtCheck,
       this.controller.getOneCompanyListing.bind(this.controller)
+    );
+
+    router.get(
+      "/categories/sorted",
+      this.jwtCheck,
+      this.controller.getAllCategorySorted.bind(this.controller)
+    );
+
+    router.post(
+      "/search/",
+      this.jwtCheck,
+      this.controller.getJobBySearch.bind(this.controller)
+    );
+
+    router.post(
+      "/search/mount",
+      this.jwtCheck,
+      this.controller.getJobOnMount.bind(this.controller)
     );
     // to add in protected route w jwt, eg
     // router.post(

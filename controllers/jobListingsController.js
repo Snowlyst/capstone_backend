@@ -3,9 +3,11 @@ const cheerio = require("cheerio");
 const puppeteer = require("puppeteer");
 
 class JobListingsController extends BaseController {
-  constructor(model, jobCategoryModel) {
+  constructor(model, jobCategoryModel, companyProfileInfoModel, locationModel) {
     super(model);
     this.jobCategoryModel = jobCategoryModel;
+    this.companyProfileInfoModel = companyProfileInfoModel;
+    this.locationModel = locationModel;
   }
   async getAllListing(req, res) {
     try {
@@ -26,11 +28,86 @@ class JobListingsController extends BaseController {
     }
   }
 
+  async getAllCategorySorted(req, res) {
+    try {
+      const output = await this.jobCategoryModel.findAll({
+        order: [["name", "ASC"]],
+      });
+      return res.json(output);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json({ error: true, msg: err.message });
+    }
+  }
+
   async getOneCompanyListing(req, res) {
     try {
       const { companyId } = req.params;
       const output = await this.model.findAll({
         where: { companyId: companyId },
+      });
+      res.status(200).json(output);
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({ error: true, msg: error.message });
+    }
+  }
+
+  async getJobBySearch(req, res) {
+    const { categoryQuery, typeQuery, locationQuery } = req.body;
+    let newLocationQuery;
+    if (locationQuery === 6) {
+      newLocationQuery = [1, 2, 3, 4, 5];
+    } else {
+      newLocationQuery = locationQuery;
+    }
+    console.log(categoryQuery, typeQuery, newLocationQuery);
+    try {
+      const output = await this.model.findAll({
+        where: {
+          employmentType: typeQuery,
+          jobCategoryId: categoryQuery,
+          locationId: newLocationQuery,
+        },
+        include: [
+          {
+            model: this.companyProfileInfoModel,
+          },
+          {
+            model: this.locationModel,
+          },
+        ],
+      });
+      res.status(200).json(output);
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({ error: true, msg: error.message });
+    }
+  }
+
+  async getJobOnMount(req, res) {
+    const { typeQuery, locationQuery } = req.body;
+    let newLocationQuery;
+    if (locationQuery === "6") {
+      newLocationQuery = [1, 2, 3, 4, 5];
+    } else {
+      newLocationQuery = locationQuery;
+    }
+    console.log(String(typeQuery), newLocationQuery);
+    try {
+      const output = await this.model.findAll({
+        where: {
+          employmentType: String(typeQuery),
+          locationId: newLocationQuery,
+        },
+        include: [
+          {
+            model: this.companyProfileInfoModel,
+          },
+          {
+            model: this.locationModel,
+          },
+        ],
       });
       res.status(200).json(output);
     } catch (error) {
