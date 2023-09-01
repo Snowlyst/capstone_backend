@@ -32,8 +32,6 @@ class JobListingsRouter {
       this.controller.getJobBySearch.bind(this.controller)
     );
 
-    router.get("/location", this.controller.getLocation.bind(this.controller));
-
     router.post(
       "/search/mount",
       this.controller.getJobOnMount.bind(this.controller)

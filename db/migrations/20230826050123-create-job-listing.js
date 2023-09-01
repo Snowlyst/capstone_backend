@@ -45,6 +45,12 @@ module.exports = {
           key: "id",
         },
       },
+      min_salary: {
+        type: Sequelize.INTEGER,
+      },
+      max_salary: {
+        type: Sequelize.INTEGER,
+      },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,

@@ -39,6 +39,8 @@ module.exports = (sequelize, DataTypes) => {
           key: "id",
         },
       },
+      minSalary: DataTypes.STRING,
+      maxSalary: DataTypes.STRING,
     },
     {
       sequelize,
