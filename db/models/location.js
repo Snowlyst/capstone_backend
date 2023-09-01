@@ -8,11 +8,6 @@ module.exports = (sequelize, DataTypes) => {
   }
   Location.init(
     {
-      // id: {
-      //   type: DataTypes.INTEGER,
-      //   primaryKey: true,
-      //   unique: true,
-      // },
       name: DataTypes.STRING,
     },
     {

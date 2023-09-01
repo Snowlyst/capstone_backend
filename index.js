@@ -80,5 +80,5 @@ app.use("/company", companyProfileInfoRouter.routes());
 app.use("/listings", joblistingsRouter.routes());
 
 app.listen(PORT, () => {
-  console.log(`Verve backend is listening on port ${PORT}!`);
+  console.log(`Express App listening on port ${PORT}`);
 });

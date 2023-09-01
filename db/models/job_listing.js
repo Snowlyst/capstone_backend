@@ -4,9 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   class Job_listing extends Model {
     static associate(models) {
       this.belongsTo(models.job_category, { foreignKey: "jobCategoryId" });
-      this.belongsTo(models.company_profile_info, {
-        foreignKey: "companyProfileInfoId",
-      });
+      this.belongsTo(models.company_profile_info, { foreignKey: "companyId" });
       this.hasMany(models.individual_jobseeker_dashboard);
       this.belongsTo(models.location, { foreignKey: "locationId" });
     }
@@ -20,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
           key: "id",
         },
       },
-      companyProfileInfoId: {
+      companyId: {
         type: DataTypes.INTEGER,
         references: {
           model: "company_profile_info",
@@ -39,6 +37,8 @@ module.exports = (sequelize, DataTypes) => {
           key: "id",
         },
       },
+      minSalary: DataTypes.STRING,
+      maxSalary: DataTypes.STRING,
     },
     {
       sequelize,
