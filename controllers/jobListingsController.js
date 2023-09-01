@@ -18,6 +18,28 @@ class JobListingsController extends BaseController {
       return res.status(400).json({ error: true, msg: err.message });
     }
   }
+  async getOneCategory(req, res) {
+    try {
+      const { jobCategoryId } = req.params;
+      const output = await this.model.findAll({
+        where: {
+          jobCategoryId: jobCategoryId,
+        },
+        include: [
+          {
+            model: this.companyProfileInfoModel,
+          },
+          {
+            model: this.jobCategoryModel,
+          },
+        ],
+      });
+      res.status(200).json({ success: true, output });
+    } catch (err) {
+      console.log(err);
+      res.status(400).json({ success: false, error: err });
+    }
+  }
   async getAllCategory(req, res) {
     try {
       const output = await this.jobCategoryModel.findAll({});
@@ -113,16 +135,6 @@ class JobListingsController extends BaseController {
     } catch (error) {
       console.log(error);
       res.status(400).json({ error: true, msg: error.message });
-    }
-  }
-
-  async getLocation(req, res) {
-    try {
-      const output = await this.locationModel.findAll();
-      res.status(200).json(output);
-    } catch (error) {
-      console.log(error);
-      res.status(400).json(error);
     }
   }
 
