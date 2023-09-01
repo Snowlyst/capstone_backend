@@ -22,11 +22,11 @@ class CompanyProfileInfoController extends BaseController {
 
   async getLocation(req, res) {
     try {
-      const output = await this.location.findAll();
+      const output = await this.locationModel.findAll();
       res.status(200).json(output);
     } catch (error) {
       console.log(error);
-      res.status(400).json({ success: false, error: error });
+      res.status(400).json(error);
     }
   }
 }
