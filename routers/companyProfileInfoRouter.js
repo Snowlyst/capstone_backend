@@ -12,6 +12,8 @@ class CompanyProfileInfoRouter {
       this.controller.getOneCompany.bind(this.controller)
     );
 
+    router.get("/location", this.controller.getLocation.bind(this.controller));
+
     return router;
   }
 }

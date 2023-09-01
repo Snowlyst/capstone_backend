@@ -16,7 +16,7 @@ module.exports = {
           key: "id",
         },
       },
-      company_id: {
+      company_profile_info_id: {
         type: Sequelize.INTEGER,
         references: {
           model: "company_profile_infos",
@@ -44,6 +44,9 @@ module.exports = {
           model: "locations",
           key: "id",
         },
+      },
+      salary: {
+        type: Sequelize.STRING,
       },
       created_at: {
         allowNull: false,
