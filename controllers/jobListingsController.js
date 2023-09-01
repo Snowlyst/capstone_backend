@@ -49,6 +49,9 @@ class JobListingsController extends BaseController {
           {
             model: this.companyProfileInfoModel,
           },
+          {
+            model: this.jobCategoryModel,
+          },
         ],
       });
       res.status(200).json({ success: true, output });
