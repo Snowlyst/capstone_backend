@@ -7,6 +7,7 @@ class CompanyProfileInfoRouter {
     this.jwtCheck = jwtCheck;
   }
   routes() {
+    router.get("/", this.controller.getAll.bind(this.controller));
     router.get(
       "/company/:companyId",
       this.controller.getOneCompany.bind(this.controller)
