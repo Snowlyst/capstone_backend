@@ -116,6 +116,16 @@ class JobListingsController extends BaseController {
     }
   }
 
+  async getLocation(req, res) {
+    try {
+      const output = await this.locationModel.findAll();
+      res.status(200).json(output);
+    } catch (error) {
+      console.log(error);
+      res.status(400).json(error);
+    }
+  }
+
   // this is for linked in scraping to test
   async getData(req, res) {
     console.log("In Controller Job listings > getData");
