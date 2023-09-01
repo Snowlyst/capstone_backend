@@ -75,6 +75,16 @@ class JobListingsController extends BaseController {
     }
   }
 
+  async getLocation(req, res) {
+    try {
+      const output = await this.locationModel.findAll();
+      res.status(200).json(output);
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({ success: false, error: error });
+    }
+  }
+
   async getJobBySearch(req, res) {
     const { categoryQuery, typeQuery, locationQuery } = req.body;
     let newLocationQuery;
@@ -141,14 +151,17 @@ class JobListingsController extends BaseController {
   // this is for linked in scraping to test
   async getData(req, res) {
     console.log("In Controller Job listings > getData");
+    console.log(req.body);
+    const { url } = req.body;
+
     // const targetURL = "https://www.linkedin.com/jobs/view/3682714831/";
     // const targetURL = "https://www.linkedin.com/jobs/view/3689173351";
-    const targetURL = "https://www.linkedin.com/jobs/view/3628237792";
+    // const targetURL = "https://www.linkedin.com/jobs/view/3628237792";
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
     try {
-      await page.goto(targetURL);
+      await page.goto(url);
       const moreButtonSelector =
         'aria/Show more, visually expands previously read content above[role="button"]';
       await page.click(moreButtonSelector);
@@ -162,46 +175,47 @@ class JobListingsController extends BaseController {
       console.log(puppeteerHtml);
 
       const objectsArray = [];
-      let currentObject = {};
-      let index = 0;
+      // let currentObject = {};
+      // let index = 0;
       objectsArray.push({ mainTitle: mainTitle });
+      objectsArray.push({ description: puppeteerHtml });
       // Split the HTML by </p> tags to extract paragraphs
-      const paragraphs = puppeteerHtml.split(/<\/p>|<\/ul>/);
-      while (index < paragraphs.length) {
-        currentObject = {};
-        const paragraph = paragraphs[index];
-        const titleMatch = paragraph.match(/<strong>(.*?)<\/strong><p><br>/);
-        if (titleMatch) {
-          const nextParagraph = paragraphs[index + 1];
-          currentObject = {
-            title: titleMatch[1].replace(/<u>|<\/u>/g, ""),
-            contents: nextParagraph
-              .replace(/<[^>]*>/g, "")
-              .replace(/<u>|<\/u>/g, "")
-              .trim(),
-          };
+      // const paragraphs = puppeteerHtml.split(/<\/p>|<\/ul>/);
+      // while (index < paragraphs.length) {
+      //   currentObject = {};
+      //   const paragraph = paragraphs[index];
+      //   const titleMatch = paragraph.match(/<strong>(.*?)<\/strong><p><br>/);
+      //   if (titleMatch) {
+      //     const nextParagraph = paragraphs[index + 1];
+      //     currentObject = {
+      //       title: titleMatch[1].replace(/<u>|<\/u>/g, ""),
+      //       contents: nextParagraph
+      //         .replace(/<[^>]*>/g, "")
+      //         .replace(/<u>|<\/u>/g, "")
+      //         .trim(),
+      //     };
 
-          index += 2;
-        } else {
-          const contents = paragraph
-            .replace(/<[^>]*>/g, "")
-            .replace(/<u>|<\/u>/g, "")
-            .trim();
-          if (contents !== "") {
-            currentObject = {
-              title: null,
-              contents: contents,
-            };
-          } else {
-            currentObject = null;
-          }
-          index += 1;
-        }
+      //     index += 2;
+      //   } else {
+      //     const contents = paragraph
+      //       .replace(/<[^>]*>/g, "")
+      //       .replace(/<u>|<\/u>/g, "")
+      //       .trim();
+      //     if (contents !== "") {
+      //       currentObject = {
+      //         title: null,
+      //         contents: contents,
+      //       };
+      //     } else {
+      //       currentObject = null;
+      //     }
+      //     index += 1;
+      //   }
 
-        if (currentObject !== null) {
-          objectsArray.push(currentObject);
-        }
-      }
+      //   if (currentObject !== null) {
+      //     objectsArray.push(currentObject);
+      //   }
+      // }
       await browser.close();
 
       res.status(200).send(objectsArray);
