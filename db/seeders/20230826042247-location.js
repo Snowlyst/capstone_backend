@@ -29,6 +29,11 @@ module.exports = {
         created_at: new Date(),
         updated_at: new Date(),
       },
+      {
+        name: "Any",
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
     ]);
   },
 

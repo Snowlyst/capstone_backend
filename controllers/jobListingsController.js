@@ -89,7 +89,7 @@ class JobListingsController extends BaseController {
     const { categoryQuery, typeQuery, locationQuery } = req.body;
     let newLocationQuery;
     if (locationQuery === 6) {
-      newLocationQuery = [1, 2, 3, 4, 5];
+      newLocationQuery = [1, 2, 3, 4, 5, 6];
     } else {
       newLocationQuery = locationQuery;
     }
@@ -121,7 +121,7 @@ class JobListingsController extends BaseController {
     const { typeQuery, locationQuery } = req.body;
     let newLocationQuery;
     if (locationQuery === "6") {
-      newLocationQuery = [1, 2, 3, 4, 5];
+      newLocationQuery = [1, 2, 3, 4, 5, 6];
     } else {
       newLocationQuery = locationQuery;
     }
