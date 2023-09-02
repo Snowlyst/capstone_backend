@@ -1,6 +1,7 @@
 const BaseController = require("./baseController");
 const cheerio = require("cheerio");
 const puppeteer = require("puppeteer");
+
 class JobListingsController extends BaseController {
   constructor(model, jobCategoryModel, companyProfileInfoModel, locationModel) {
     super(model);
@@ -51,7 +52,6 @@ class JobListingsController extends BaseController {
       res.status(400).json({ error: true, msg: error.message });
     }
   }
-
   async getOneCategory(req, res) {
     try {
       const { jobCategoryId } = req.params;
@@ -74,36 +74,6 @@ class JobListingsController extends BaseController {
       res.status(400).json({ success: false, error: err });
     }
   }
-  async getJobOnMount(req, res) {
-    const { typeQuery, locationQuery } = req.body;
-    let newLocationQuery;
-    if (locationQuery === "6") {
-      newLocationQuery = [1, 2, 3, 4, 5];
-    } else {
-      newLocationQuery = locationQuery;
-    }
-    console.log(String(typeQuery), newLocationQuery);
-    try {
-      const output = await this.model.findAll({
-        where: {
-          employmentType: String(typeQuery),
-          locationId: newLocationQuery,
-        },
-        include: [
-          {
-            model: this.companyProfileInfoModel,
-          },
-          {
-            model: this.locationModel,
-          },
-        ],
-      });
-      res.status(200).json(output);
-    } catch (error) {
-      console.log(error);
-      res.status(400).json({ error: true, msg: error.message });
-    }
-  }
 
   async getLocation(req, res) {
     try {
@@ -111,9 +81,10 @@ class JobListingsController extends BaseController {
       res.status(200).json(output);
     } catch (error) {
       console.log(error);
-      res.status(400).json(error);
+      res.status(400).json({ success: false, error: error });
     }
   }
+
   async getJobBySearch(req, res) {
     const { categoryQuery, typeQuery, locationQuery } = req.body;
     let newLocationQuery;
@@ -145,6 +116,38 @@ class JobListingsController extends BaseController {
       res.status(400).json({ error: true, msg: error.message });
     }
   }
+
+  async getJobOnMount(req, res) {
+    const { typeQuery, locationQuery } = req.body;
+    let newLocationQuery;
+    if (locationQuery === "6") {
+      newLocationQuery = [1, 2, 3, 4, 5];
+    } else {
+      newLocationQuery = locationQuery;
+    }
+    console.log(String(typeQuery), newLocationQuery);
+    try {
+      const output = await this.model.findAll({
+        where: {
+          employmentType: String(typeQuery),
+          locationId: newLocationQuery,
+        },
+        include: [
+          {
+            model: this.companyProfileInfoModel,
+          },
+          {
+            model: this.locationModel,
+          },
+        ],
+      });
+      res.status(200).json(output);
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({ error: true, msg: error.message });
+    }
+  }
+
   // this is for linked in scraping to test
   async getData(req, res) {
     console.log("In Controller Job listings > getData");
