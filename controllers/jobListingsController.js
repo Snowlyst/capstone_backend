@@ -132,9 +132,9 @@ class JobListingsController extends BaseController {
     console.log(req.body);
     const { url } = req.body;
 
-    // const targetURL = "https://www.linkedin.com/jobs/view/3682714831/";
-    // const targetURL = "https://www.linkedin.com/jobs/view/3689173351";
-    // const targetURL = "https://www.linkedin.com/jobs/view/3628237792";
+    // const url = "https://www.linkedin.com/jobs/view/3682714831/";
+    // const url = "https://www.linkedin.com/jobs/view/3689173351";
+    // const url = "https://www.linkedin.com/jobs/view/3628237792";
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
@@ -151,49 +151,56 @@ class JobListingsController extends BaseController {
 
       const puppeteerHtml = $(".show-more-less-html__markup").html();
       console.log(puppeteerHtml);
-
       const objectsArray = [];
       // let currentObject = {};
-      // let index = 0;
-      objectsArray.push({ mainTitle: mainTitle });
-      objectsArray.push({ description: puppeteerHtml });
+      let index = 0;
+      let description = "";
+
+      // objectsArray.push({ description: puppeteerHtml });
       // Split the HTML by </p> tags to extract paragraphs
-      // const paragraphs = puppeteerHtml.split(/<\/p>|<\/ul>/);
-      // while (index < paragraphs.length) {
-      //   currentObject = {};
-      //   const paragraph = paragraphs[index];
-      //   const titleMatch = paragraph.match(/<strong>(.*?)<\/strong><p><br>/);
-      //   if (titleMatch) {
-      //     const nextParagraph = paragraphs[index + 1];
-      //     currentObject = {
-      //       title: titleMatch[1].replace(/<u>|<\/u>/g, ""),
-      //       contents: nextParagraph
-      //         .replace(/<[^>]*>/g, "")
-      //         .replace(/<u>|<\/u>/g, "")
-      //         .trim(),
-      //     };
+      const paragraphs = puppeteerHtml.split(/<\/p>/);
+      while (index < paragraphs.length) {
+        //       currentObject = {};
+        const paragraph = paragraphs[index];
+        const titleMatch = paragraph.match(/<strong>(.*?)<\/strong><p><br>/);
+        if (titleMatch) {
+          const nextParagraph = paragraphs[index + 1];
+          const title = titleMatch[1].replace(/<u>|<\/u>/g, "");
+          const content = nextParagraph
+            // .replace(/<[^>]*>/g, "")
+            // .replace(/<u>|<\/u>/g, "")
+            .trim();
+          // currentObject = {
+          //   title: `<p>${title}</p>`,
+          //   contents: `<p>${content}</p>`,
+          // };
 
-      //     index += 2;
-      //   } else {
-      //     const contents = paragraph
-      //       .replace(/<[^>]*>/g, "")
-      //       .replace(/<u>|<\/u>/g, "")
-      //       .trim();
-      //     if (contents !== "") {
-      //       currentObject = {
-      //         title: null,
-      //         contents: contents,
-      //       };
-      //     } else {
-      //       currentObject = null;
-      //     }
-      //     index += 1;
-      //   }
+          //Add title and content to description
+          description += `<p><strong>${title}</strong></p><p>${content}</p>`;
 
-      //   if (currentObject !== null) {
-      //     objectsArray.push(currentObject);
-      //   }
-      // }
+          index += 2;
+        } else {
+          const contents = paragraph
+            .replace(/<[^>]*>/g, "")
+            // .replace(/<u>|<\/u>/g, "")
+            .trim();
+          if (contents !== "") {
+            // currentObject = {
+            //   title: null,
+            //   contents: `<p>${contents}</p>`,
+            // };
+            description += `<p>${contents}</p>`;
+          }
+
+          index += 1;
+        }
+
+        console.log(objectsArray);
+        // if (currentObject !== null) {
+        //   objectsArray.push(currentObject);
+        // }
+      }
+      objectsArray.push({ mainTitle: mainTitle, description: description });
       await browser.close();
 
       res.status(200).send(objectsArray);
