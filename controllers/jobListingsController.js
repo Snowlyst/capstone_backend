@@ -75,6 +75,35 @@ class JobListingsController extends BaseController {
     }
   }
 
+  async getListingByUserId(req, res) {
+    try {
+      const { userId } = req.params;
+      const firstOutput = await this.companyProfileInfoModel.findAll({
+        where: {
+          userId: userId,
+        },
+      });
+      const companyIdToSearch = [];
+      firstOutput.map((info) => {
+        return companyIdToSearch.push(info.dataValues.id);
+      });
+      const output = await this.model.findAll({
+        where: {
+          companyId: companyIdToSearch,
+        },
+        include: [
+          {
+            model: this.locationModel,
+          },
+        ],
+      });
+      res.status(200).json(output);
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({ error: true, msg: error.message });
+    }
+  }
+
   async getLocation(req, res) {
     try {
       const output = await this.locationModel.findAll();
