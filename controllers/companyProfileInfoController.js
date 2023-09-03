@@ -54,6 +54,31 @@ class CompanyProfileInfoController extends BaseController {
         locationId: locationId,
         minSalary: minSalary,
         maxSalary: maxSalary || null,
+        approvalByAdmin: false,
+        commentOnNotApproved: null,
+      });
+      res.status(200).json(output);
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({ error: true, msg: error.message });
+    }
+  }
+
+  async getOneJob(req, res) {
+    const { jobId } = req.params;
+    try {
+      const output = await this.jobListingModel.findAll({
+        where: {
+          id: jobId,
+        },
+        include: [
+          {
+            model: this.model,
+          },
+          {
+            model: this.locationModel,
+          },
+        ],
       });
       res.status(200).json(output);
     } catch (error) {
