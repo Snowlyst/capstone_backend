@@ -13,21 +13,21 @@ class UserResumeTypeRouter {
       this.controller.getAll.bind(this.controller)
     );
     router.get(
-      "/:userId",
+      "/resume/:userId",
       this.jwtCheck,
       this.controller.getOnePersonResume.bind(this.controller)
     );
     router.put(
-      "/:resumeId",
+      "/resume/:resumeId",
       this.jwtCheck,
       this.controller.editOneResume.bind(this.controller)
     );
     router.delete(
-      "/:resumeId",
+      "/resume/:resumeId",
       this.controller.deleteOneResume.bind(this.controller)
     );
     router.post(
-      "/:userId",
+      "/resume/:userId",
       this.jwtCheck,
       this.controller.addOneResume.bind(this.controller)
     );

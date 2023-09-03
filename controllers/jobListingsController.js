@@ -18,6 +18,28 @@ class JobListingsController extends BaseController {
       return res.status(400).json({ error: true, msg: err.message });
     }
   }
+  async getOneCategory(req, res) {
+    try {
+      const { jobCategoryId } = req.params;
+      const output = await this.model.findAll({
+        where: {
+          jobCategoryId: jobCategoryId,
+        },
+        include: [
+          {
+            model: this.companyProfileInfoModel,
+          },
+          {
+            model: this.jobCategoryModel,
+          },
+        ],
+      });
+      res.status(200).json({ success: true, output });
+    } catch (err) {
+      console.log(err);
+      res.status(400).json({ success: false, error: err });
+    }
+  }
   async getAllCategory(req, res) {
     try {
       const output = await this.jobCategoryModel.findAll({});
@@ -53,6 +75,35 @@ class JobListingsController extends BaseController {
     }
   }
 
+  async getListingByUserId(req, res) {
+    try {
+      const { userId } = req.params;
+      const firstOutput = await this.companyProfileInfoModel.findAll({
+        where: {
+          userId: userId,
+        },
+      });
+      const companyIdToSearch = [];
+      firstOutput.map((info) => {
+        return companyIdToSearch.push(info.dataValues.id);
+      });
+      const output = await this.model.findAll({
+        where: {
+          companyId: companyIdToSearch,
+        },
+        include: [
+          {
+            model: this.locationModel,
+          },
+        ],
+      });
+      res.status(200).json(output);
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({ error: true, msg: error.message });
+    }
+  }
+
   async getLocation(req, res) {
     try {
       const output = await this.locationModel.findAll();
@@ -67,7 +118,7 @@ class JobListingsController extends BaseController {
     const { categoryQuery, typeQuery, locationQuery } = req.body;
     let newLocationQuery;
     if (locationQuery === 6) {
-      newLocationQuery = [1, 2, 3, 4, 5];
+      newLocationQuery = [1, 2, 3, 4, 5, 6];
     } else {
       newLocationQuery = locationQuery;
     }
@@ -99,7 +150,7 @@ class JobListingsController extends BaseController {
     const { typeQuery, locationQuery } = req.body;
     let newLocationQuery;
     if (locationQuery === "6") {
-      newLocationQuery = [1, 2, 3, 4, 5];
+      newLocationQuery = [1, 2, 3, 4, 5, 6];
     } else {
       newLocationQuery = locationQuery;
     }

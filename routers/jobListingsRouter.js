@@ -18,10 +18,18 @@ class JobListingsRouter {
       "/company/:companyId",
       this.controller.getOneCompanyListing.bind(this.controller)
     );
-
+    router.get(
+      "/companysearchbyuserid/:userId",
+      this.controller.getListingByUserId.bind(this.controller)
+    );
     router.get(
       "/categories/sorted",
       this.controller.getAllCategorySorted.bind(this.controller)
+    );
+
+    router.get(
+      "/categories/:jobCategoryId",
+      this.controller.getOneCategory.bind(this.controller)
     );
 
     router.post(
