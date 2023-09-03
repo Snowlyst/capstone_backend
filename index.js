@@ -34,12 +34,14 @@ const CompanyProfileInfoController = require("./controllers/companyProfileInfoCo
 const usersController = new UsersController(
   user,
   user_role,
-  user_personal_detail
+  user_personal_detail,
+  company_profile_info
 );
 const userResumeTypeController = new UserResumeTypeController(user_resume_type);
 const companyProfileInfoController = new CompanyProfileInfoController(
   company_profile_info,
-  location
+  location,
+  job_listing
 );
 
 const joblistingsController = new JobListingsController(

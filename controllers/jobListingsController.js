@@ -205,7 +205,7 @@ class JobListingsController extends BaseController {
 
       res.status(200).send(objectsArray);
     } catch (error) {
-      res.status(500).send(error.message);
+      res.status(500).send({ error: true, msg: error.message });
     }
   }
 }
