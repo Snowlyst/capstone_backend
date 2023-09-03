@@ -42,6 +42,23 @@ class JobListingsRouter {
       this.controller.getJobOnMount.bind(this.controller)
     );
 
+    router.get(
+      "/admin/checkunverifiedjob",
+      this.jwtCheck,
+      this.controller.checkUnverifiedJob.bind(this.controller)
+    );
+
+    router.put(
+      "/admin/acceptunverifiedjob/",
+      this.jwtCheck,
+      this.controller.acceptUnverifiedJob.bind(this.controller)
+    );
+
+    router.put(
+      "/admin/requestchangetojob",
+      this.jwtCheck,
+      this.controller.requestChangeToJob.bind(this.controller)
+    );
     // to add in protected route w jwt, eg
     // router.post(
     //   "/",
