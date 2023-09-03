@@ -250,7 +250,7 @@ module.exports = {
         updated_at: new Date(),
       },
       {
-        name: "Adminstrative",
+        name: "Administrative",
         description:
           "An Administrator provides office support to either an individual or team and is vital for the smooth-running of a business. Their duties may include fielding telephone calls, receiving and directing visitors, word processing, creating spreadsheets and presentations, and filing.",
         created_at: new Date(),

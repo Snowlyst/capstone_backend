@@ -12,7 +12,8 @@ class JobListingsRouter {
       "/categories/",
       this.controller.getAllCategory.bind(this.controller)
     );
-    router.get("/linkedin", this.controller.getData.bind(this.controller));
+    router.post("/linkedin", this.controller.getData.bind(this.controller));
+
     router.get(
       "/company/:companyId",
       this.controller.getOneCompanyListing.bind(this.controller)

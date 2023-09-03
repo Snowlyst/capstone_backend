@@ -2,10 +2,11 @@ const BaseController = require("./baseController");
 // This just cover
 //UsersController(user, user_role, user_personal_detail);
 class UsersController extends BaseController {
-  constructor(user, userRoleModel, userPersonalDetailModel) {
+  constructor(user, userRoleModel, userPersonalDetailModel, companyModel) {
     super(user);
     this.userRoleModel = userRoleModel;
     this.userPersonalDetailModel = userPersonalDetailModel;
+    this.companyModel = companyModel;
     console.log(userRoleModel);
   }
 
@@ -31,6 +32,31 @@ class UsersController extends BaseController {
       } else {
         console.log("User retrieved!");
       }
+
+      // if user is employer, to return company info as well
+      if (role === 3) {
+        try {
+          const company_profile_info = await this.companyModel.findAll({
+            where: { userId: checkedUser.id },
+          });
+          if (company_profile_info.length > 0) {
+            const company_info = company_profile_info[0].dataValues;
+            console.log("This is companyInfo: ", company_info);
+            checkedUser.dataValues.companyInfo = company_info;
+            console.log("Company found, info added!");
+          }
+
+          console.log("User w co. info: ", checkedUser);
+        } catch (err) {
+          console.log("Error, company not found.", err.message);
+        }
+      }
+
+      // other statements for other info will go here if needed to be loaded into currUser at login
+      // else {
+
+      // }
+
       return res.json({ checkedUser });
     } catch (err) {
       console.log(err.message);
