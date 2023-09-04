@@ -17,8 +17,8 @@ const db = require("./db/models/index");
 const {
   user,
   user_role,
-  user_personal_detail,
   user_resume_type,
+  user_personal_detail,
   job_listing,
   job_category,
   company_profile_info,
@@ -43,7 +43,8 @@ const usersController = new UsersController(
   user,
   user_role,
   user_personal_detail,
-  company_profile_info
+  company_profile_info,
+  location
 );
 const userResumeTypeController = new UserResumeTypeController(user_resume_type);
 const companyProfileInfoController = new CompanyProfileInfoController(

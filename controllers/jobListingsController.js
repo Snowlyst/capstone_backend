@@ -129,6 +129,7 @@ class JobListingsController extends BaseController {
           employmentType: typeQuery,
           jobCategoryId: categoryQuery,
           locationId: newLocationQuery,
+          approvalByAdmin: true,
         },
         include: [
           {
@@ -160,6 +161,7 @@ class JobListingsController extends BaseController {
         where: {
           employmentType: String(typeQuery),
           locationId: newLocationQuery,
+          approvalByAdmin: true,
         },
         include: [
           {
@@ -170,6 +172,68 @@ class JobListingsController extends BaseController {
           },
         ],
       });
+      res.status(200).json(output);
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({ error: true, msg: error.message });
+    }
+  }
+
+  async checkUnverifiedJob(req, res) {
+    try {
+      const output = await this.model.findAll({
+        where: {
+          approvalByAdmin: false,
+        },
+        include: [
+          {
+            model: this.companyProfileInfoModel,
+          },
+          {
+            model: this.locationModel,
+          },
+        ],
+      });
+      res.status(200).json(output);
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({ error: true, msg: error.message });
+    }
+  }
+
+  async acceptUnverifiedJob(req, res) {
+    try {
+      const { jobId } = req.body;
+      const output = await this.model.update(
+        {
+          approvalByAdmin: true,
+        },
+        {
+          where: {
+            id: jobId,
+          },
+        }
+      );
+      res.status(200).json(output);
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({ error: true, msg: error.message });
+    }
+  }
+
+  async requestChangeToJob(req, res) {
+    try {
+      const { jobId, rejectReason } = req.body;
+      const output = await this.model.update(
+        {
+          commentOnNotApproved: rejectReason,
+        },
+        {
+          where: {
+            id: jobId,
+          },
+        }
+      );
       res.status(200).json(output);
     } catch (error) {
       console.log(error);

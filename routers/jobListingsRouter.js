@@ -21,6 +21,10 @@ class JobListingsRouter {
       this.controller.getOneCompanyListing.bind(this.controller)
     );
     router.get(
+      "/categories/sorted",
+      this.controller.getAllCategorySorted.bind(this.controller)
+    );
+    router.get(
       "/categories/:jobCategoryId",
       this.controller.getOneCategory.bind(this.controller)
     ),
@@ -46,6 +50,24 @@ class JobListingsRouter {
     router.post(
       "/search/mount",
       this.controller.getJobOnMount.bind(this.controller)
+    );
+
+    router.get(
+      "/admin/checkunverifiedjob",
+      this.jwtCheck,
+      this.controller.checkUnverifiedJob.bind(this.controller)
+    );
+
+    router.put(
+      "/admin/acceptunverifiedjob/",
+      this.jwtCheck,
+      this.controller.acceptUnverifiedJob.bind(this.controller)
+    );
+
+    router.put(
+      "/admin/requestchangetojob",
+      this.jwtCheck,
+      this.controller.requestChangeToJob.bind(this.controller)
     );
 
     // to add in protected route w jwt, eg
