@@ -21,6 +21,8 @@ class CompanyProfileInfoRouter {
       this.controller.postNewJob.bind(this.controller)
     );
 
+    router.get("/jobs/:jobId", this.controller.getOneJob.bind(this.controller));
+
     return router;
   }
 }
