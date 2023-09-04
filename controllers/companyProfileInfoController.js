@@ -88,18 +88,38 @@ class CompanyProfileInfoController extends BaseController {
     }
   }
 
-  async deleteOne(req, res) {
+  async acceptUnverifiedCompany(req, res) {
+    try {
+      const { entityId } = req.body;
+      const output = this.model.update(
+        {
+          approvalByAdmin: true,
+        },
+        {
+          where: {
+            id: entityId,
+          },
+        }
+      );
+      res.status(200).json(output);
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({ error: true, msg: error.message });
+    }
+  }
+
+  async deleteUnverifiedCompany(req, res) {
     try {
       const { entityId } = req.params;
-      const output = await this.userModel.destroy({
+      const output = await this.model.destroy({
         where: {
           id: entityId,
         },
       });
       res.status(200).json(output);
-    } catch (err) {
-      console.error(err);
-      return res.status(400).json({ error: true, msg: err.message });
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({ error: true, msg: error.message });
     }
   }
 }

@@ -39,6 +39,8 @@ module.exports = (sequelize, DataTypes) => {
           key: "id",
         },
       },
+      minSalary: DataTypes.INTEGER,
+      maxSalary: DataTypes.INTEGER,
     },
     {
       sequelize,
