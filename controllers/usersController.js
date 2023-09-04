@@ -97,5 +97,64 @@ class UsersController extends BaseController {
       return res.status(400).json({ error: true, msg: err.message });
     }
   }
+
+  async checkUnverifiedUserAndCompany(req, res) {
+    try {
+      const output1 = await this.model.findAll({
+        where: {
+          approvedByAdmin: false,
+        },
+        include: [
+          {
+            model: this.userPersonalDetailModel,
+          },
+        ],
+      });
+      const output2 = await this.companyModel.findAll({
+        where: {
+          approvalByAdmin: false,
+        },
+      });
+      res.status(200).json([output1, output2]);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json({ error: true, msg: err.message });
+    }
+  }
+
+  async approveUnverifiedUser(req, res) {
+    try {
+      const { entityId } = req.body;
+      const output = await this.model.update(
+        {
+          approvedByAdmin: true,
+        },
+        {
+          where: {
+            id: entityId,
+          },
+        }
+      );
+      res.status(200).json(output);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json({ error: true, msg: err.message });
+    }
+  }
+
+  async deleteUnverifiedUser(req, res) {
+    try {
+      const { entityId } = req.params;
+      const output = await this.model.destroy({
+        where: {
+          id: entityId,
+        },
+      });
+      res.status(200).json(output);
+    } catch (err) {
+      console.error(err);
+      return res.status(400).json({ error: true, msg: err.message });
+    }
+  }
 }
 module.exports = UsersController;
