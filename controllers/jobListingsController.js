@@ -18,6 +18,28 @@ class JobListingsController extends BaseController {
       return res.status(400).json({ error: true, msg: err.message });
     }
   }
+  async getOneCategory(req, res) {
+    try {
+      const { jobCategoryId } = req.params;
+      const output = await this.model.findAll({
+        where: {
+          jobCategoryId: jobCategoryId,
+        },
+        include: [
+          {
+            model: this.companyProfileInfoModel,
+          },
+          {
+            model: this.jobCategoryModel,
+          },
+        ],
+      });
+      res.status(200).json({ success: true, output });
+    } catch (err) {
+      console.log(err);
+      res.status(400).json({ success: false, error: err });
+    }
+  }
   async getAllCategory(req, res) {
     try {
       const output = await this.jobCategoryModel.findAll({});
@@ -75,6 +97,35 @@ class JobListingsController extends BaseController {
     }
   }
 
+  async getListingByUserId(req, res) {
+    try {
+      const { userId } = req.params;
+      const firstOutput = await this.companyProfileInfoModel.findAll({
+        where: {
+          userId: userId,
+        },
+      });
+      const companyIdToSearch = [];
+      firstOutput.map((info) => {
+        return companyIdToSearch.push(info.dataValues.id);
+      });
+      const output = await this.model.findAll({
+        where: {
+          companyId: companyIdToSearch,
+        },
+        include: [
+          {
+            model: this.locationModel,
+          },
+        ],
+      });
+      res.status(200).json(output);
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({ error: true, msg: error.message });
+    }
+  }
+
   async getLocation(req, res) {
     try {
       const output = await this.locationModel.findAll();
@@ -89,7 +140,7 @@ class JobListingsController extends BaseController {
     const { categoryQuery, typeQuery, locationQuery } = req.body;
     let newLocationQuery;
     if (locationQuery === 6) {
-      newLocationQuery = [1, 2, 3, 4, 5];
+      newLocationQuery = [1, 2, 3, 4, 5, 6];
     } else {
       newLocationQuery = locationQuery;
     }
@@ -121,7 +172,7 @@ class JobListingsController extends BaseController {
     const { typeQuery, locationQuery } = req.body;
     let newLocationQuery;
     if (locationQuery === "6") {
-      newLocationQuery = [1, 2, 3, 4, 5];
+      newLocationQuery = [1, 2, 3, 4, 5, 6];
     } else {
       newLocationQuery = locationQuery;
     }
@@ -154,9 +205,9 @@ class JobListingsController extends BaseController {
     console.log(req.body);
     const { url } = req.body;
 
-    // const targetURL = "https://www.linkedin.com/jobs/view/3682714831/";
-    // const targetURL = "https://www.linkedin.com/jobs/view/3689173351";
-    // const targetURL = "https://www.linkedin.com/jobs/view/3628237792";
+    // const url = "https://www.linkedin.com/jobs/view/3682714831/";
+    // const url = "https://www.linkedin.com/jobs/view/3689173351";
+    // const url = "https://www.linkedin.com/jobs/view/3628237792";
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
@@ -173,54 +224,61 @@ class JobListingsController extends BaseController {
 
       const puppeteerHtml = $(".show-more-less-html__markup").html();
       console.log(puppeteerHtml);
-
       const objectsArray = [];
       // let currentObject = {};
-      // let index = 0;
-      objectsArray.push({ mainTitle: mainTitle });
-      objectsArray.push({ description: puppeteerHtml });
+      let index = 0;
+      let description = "";
+
+      // objectsArray.push({ description: puppeteerHtml });
       // Split the HTML by </p> tags to extract paragraphs
-      // const paragraphs = puppeteerHtml.split(/<\/p>|<\/ul>/);
-      // while (index < paragraphs.length) {
-      //   currentObject = {};
-      //   const paragraph = paragraphs[index];
-      //   const titleMatch = paragraph.match(/<strong>(.*?)<\/strong><p><br>/);
-      //   if (titleMatch) {
-      //     const nextParagraph = paragraphs[index + 1];
-      //     currentObject = {
-      //       title: titleMatch[1].replace(/<u>|<\/u>/g, ""),
-      //       contents: nextParagraph
-      //         .replace(/<[^>]*>/g, "")
-      //         .replace(/<u>|<\/u>/g, "")
-      //         .trim(),
-      //     };
+      const paragraphs = puppeteerHtml.split(/<\/p>/);
+      while (index < paragraphs.length) {
+        //       currentObject = {};
+        const paragraph = paragraphs[index];
+        const titleMatch = paragraph.match(/<strong>(.*?)<\/strong><p><br>/);
+        if (titleMatch) {
+          const nextParagraph = paragraphs[index + 1];
+          const title = titleMatch[1].replace(/<u>|<\/u>/g, "");
+          const content = nextParagraph
+            // .replace(/<[^>]*>/g, "")
+            // .replace(/<u>|<\/u>/g, "")
+            .trim();
+          // currentObject = {
+          //   title: `<p>${title}</p>`,
+          //   contents: `<p>${content}</p>`,
+          // };
 
-      //     index += 2;
-      //   } else {
-      //     const contents = paragraph
-      //       .replace(/<[^>]*>/g, "")
-      //       .replace(/<u>|<\/u>/g, "")
-      //       .trim();
-      //     if (contents !== "") {
-      //       currentObject = {
-      //         title: null,
-      //         contents: contents,
-      //       };
-      //     } else {
-      //       currentObject = null;
-      //     }
-      //     index += 1;
-      //   }
+          //Add title and content to description
+          description += `<p><strong>${title}</strong></p><p>${content}</p>`;
 
-      //   if (currentObject !== null) {
-      //     objectsArray.push(currentObject);
-      //   }
-      // }
+          index += 2;
+        } else {
+          const contents = paragraph
+            .replace(/<[^>]*>/g, "")
+            // .replace(/<u>|<\/u>/g, "")
+            .trim();
+          if (contents !== "") {
+            // currentObject = {
+            //   title: null,
+            //   contents: `<p>${contents}</p>`,
+            // };
+            description += `<p>${contents}</p>`;
+          }
+
+          index += 1;
+        }
+
+        console.log(objectsArray);
+        // if (currentObject !== null) {
+        //   objectsArray.push(currentObject);
+        // }
+      }
+      objectsArray.push({ mainTitle: mainTitle, description: description });
       await browser.close();
 
       res.status(200).send(objectsArray);
     } catch (error) {
-      res.status(500).send(error.message);
+      res.status(500).send({ error: true, msg: error.message });
     }
   }
 }

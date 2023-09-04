@@ -12,7 +12,17 @@ class CompanyProfileInfoRouter {
       "/company/:companyId",
       this.controller.getOneCompany.bind(this.controller)
     );
+
     router.get("/location", this.controller.getLocation.bind(this.controller));
+
+    router.post(
+      "/newjobpost",
+      this.jwtCheck,
+      this.controller.postNewJob.bind(this.controller)
+    );
+
+    router.get("/jobs/:jobId", this.controller.getOneJob.bind(this.controller));
+
     return router;
   }
 }

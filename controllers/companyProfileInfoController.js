@@ -1,9 +1,10 @@
 const BaseController = require("./baseController");
 
 class CompanyProfileInfoController extends BaseController {
-  constructor(model, locationModel) {
+  constructor(model, locationModel, jobListingModel) {
     super(model);
     this.locationModel = locationModel;
+    this.jobListingModel = jobListingModel;
   }
   async getOneCompany(req, res) {
     try {
@@ -16,7 +17,7 @@ class CompanyProfileInfoController extends BaseController {
       res.status(200).json(output);
     } catch (error) {
       console.log(error);
-      res.status(400).json({ success: false, error: error });
+      res.status(400).json({ error: true, msg: error.message });
     }
   }
 
@@ -26,7 +27,63 @@ class CompanyProfileInfoController extends BaseController {
       res.status(200).json(output);
     } catch (error) {
       console.log(error);
-      res.status(400).json(error);
+      res.status(400).json({ error: true, msg: error.message });
+    }
+  }
+
+  async postNewJob(req, res) {
+    const {
+      jobCategoryId,
+      companyId,
+      employmentType,
+      title,
+      description,
+      locationId,
+      minSalary,
+      maxSalary,
+    } = req.body;
+    console.log(req.body);
+
+    try {
+      const output = await this.jobListingModel.create({
+        jobCategoryId: jobCategoryId,
+        companyId: companyId,
+        employmentType: employmentType,
+        title: title,
+        description: description,
+        locationId: locationId,
+        minSalary: minSalary,
+        maxSalary: maxSalary || null,
+        approvalByAdmin: false,
+        commentOnNotApproved: null,
+      });
+      res.status(200).json(output);
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({ error: true, msg: error.message });
+    }
+  }
+
+  async getOneJob(req, res) {
+    const { jobId } = req.params;
+    try {
+      const output = await this.jobListingModel.findAll({
+        where: {
+          id: jobId,
+        },
+        include: [
+          {
+            model: this.model,
+          },
+          {
+            model: this.locationModel,
+          },
+        ],
+      });
+      res.status(200).json(output);
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({ error: true, msg: error.message });
     }
   }
 }

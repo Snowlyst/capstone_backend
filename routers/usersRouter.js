@@ -23,6 +23,7 @@ class UsersRouter {
       this.jwtCheck,
       this.controller.retrieveLogin.bind(this.controller)
     );
+
     // to add in protected route w jwt, eg
     // router.post(
     //   "/",
