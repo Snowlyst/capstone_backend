@@ -7,6 +7,8 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
         type: Sequelize.INTEGER,
       },
       user_role_id: {
