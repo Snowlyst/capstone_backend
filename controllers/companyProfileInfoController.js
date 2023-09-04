@@ -1,10 +1,11 @@
 const BaseController = require("./baseController");
 
 class CompanyProfileInfoController extends BaseController {
-  constructor(model, locationModel, jobListingModel) {
+  constructor(model, locationModel, jobListingModel, userModel) {
     super(model);
     this.locationModel = locationModel;
     this.jobListingModel = jobListingModel;
+    this.userModel = userModel;
   }
   async getOneCompany(req, res) {
     try {
@@ -84,6 +85,21 @@ class CompanyProfileInfoController extends BaseController {
     } catch (error) {
       console.log(error);
       res.status(400).json({ error: true, msg: error.message });
+    }
+  }
+
+  async deleteOne(req, res) {
+    try {
+      const { entityId } = req.params;
+      const output = await this.userModel.destroy({
+        where: {
+          id: entityId,
+        },
+      });
+      res.status(200).json(output);
+    } catch (err) {
+      console.error(err);
+      return res.status(400).json({ error: true, msg: err.message });
     }
   }
 }

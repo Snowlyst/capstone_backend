@@ -8,6 +8,8 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
       },
       job_category_id: {
         type: Sequelize.INTEGER,
@@ -18,6 +20,8 @@ module.exports = {
       },
       company_id: {
         type: Sequelize.INTEGER,
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
         references: {
           model: "company_profile_infos",
           key: "id",
