@@ -12,6 +12,8 @@ class JobListingsRouter {
       "/categories/",
       this.controller.getAllCategory.bind(this.controller)
     );
+
+    router.get("/linkedin", this.controller.getData.bind(this.controller));
     router.post("/linkedin", this.controller.getData.bind(this.controller));
 
     router.get(
@@ -19,9 +21,13 @@ class JobListingsRouter {
       this.controller.getOneCompanyListing.bind(this.controller)
     );
     router.get(
-      "/companysearchbyuserid/:userId",
-      this.controller.getListingByUserId.bind(this.controller)
-    );
+      "/categories/:jobCategoryId",
+      this.controller.getOneCategory.bind(this.controller)
+    ),
+      router.get(
+        "/companysearchbyuserid/:userId",
+        this.controller.getListingByUserId.bind(this.controller)
+      );
     router.get(
       "/categories/sorted",
       this.controller.getAllCategorySorted.bind(this.controller)

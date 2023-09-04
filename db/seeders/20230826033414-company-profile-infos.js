@@ -11,7 +11,7 @@ module.exports = {
         approval_by_admin: true,
         company_name: "DBS Bank",
         company_logo:
-          "https://www.dbs.com.sg/o/corporate-theme/images/Logo.svg",
+          "https://1000logos.net/wp-content/uploads/2020/04/Emblem-DBS-Bank.jpg",
         description:
           "DBS Bank Limited, often known as DBS, is a Singaporean multinational banking and financial services corporation headquartered at the Marina Bay Financial Centre in the Marina Bay district of Singapore.",
         address:
@@ -30,7 +30,7 @@ module.exports = {
         approval_by_admin: true,
         company_name: "OCBC Bank",
         company_logo:
-          "https://www.ocbc.com/iwov-resources/sg/ocbc/gbc/img/logo_ocbc.png",
+          "https://companieslogo.com/img/orig/O39.SI-d00b23e8.png?t=1648146507",
         description:
           "Oversea-Chinese Banking Corporation, Limited, often known as OCBC Bank, is a Singapore multinational banking and financial services corporation headquartered in OCBC Centre, Singapore.",
         address: "65 Chulia St, OCBC Centre, Singapore",
@@ -116,7 +116,7 @@ module.exports = {
         approval_by_admin: true,
         company_name: "ComfortDelGro",
         company_logo:
-          "https://www.comfortdelgro.com/documents/119405/119411/112384/8bb27b95-375a-4686-27b0-f32a49f615b7?t=1590541307272",
+          "https://seekvectorlogo.com/wp-content/uploads/2018/04/comfortdelgro-vector-logo-small.png",
         description:
           "ComfortDelGro Corporation is a multi-national land transport company listed on the Singapore Exchange, operating about 35,000 vehicles in seven countries. It was formed on 29 March 2003 through a merger of Singapore-based land transport companies Comfort Group and DelGro Corporation",
         address: "205 Braddell Road, Singapore",
@@ -133,7 +133,7 @@ module.exports = {
         approval_by_admin: true,
         company_name: "Singapore Technologies Engineering",
         company_logo:
-          "https://media.licdn.com/dms/image/C560BAQFKMUPbSAbqOw/company-logo_200_200/0/1519897051073?e=2147483647&v=beta&t=MxQmIaLahQqY4od_y-iFR7vJ602Rf41m6HeT_zWxH4o",
+          "https://www.logotypes101.com/logos/205/96BA752BA3BE7A1B2FFFFE1666070BCB/Singapore_Technologies.png",
         description:
           "Singapore Technologies Engineering Ltd, doing business as ST Engineering, is a Singaporean multinational technology and engineering group in the aerospace, smart city as well as defence and public security sectors.",
         address: "1 Ang Mo Kio Electronics Park Road, Singapore",
@@ -150,7 +150,7 @@ module.exports = {
         approval_by_admin: true,
         company_name: "City Developments Limited",
         company_logo:
-          "https://www.worldcitiessummit.com.sg/qql/slot/u511/stye31052019/image/Sponsor/2019/CDL_2.png",
+          "https://companieslogo.com/img/orig/C09.SI-9635a1e3.png?t=1594124414",
         description:
           "City Developments Limited (CDL) is a leading global real estate company with a network spanning 112 locations in 29 countries and regions. Listed on the Singapore Exchange, the Group is one of the largest companies by market capitalisation. Its income-stable and geographically-diverse portfolio comprises residences, offices, hotels, serviced apartments, shopping malls and integrated developments.",
         address: "9 Raffles Pl, Republic Plaza, Singapore",
@@ -167,7 +167,7 @@ module.exports = {
         approval_by_admin: true,
         company_name: "Singtel",
         company_logo:
-          "https://media.licdn.com/dms/image/C4D0BAQEmT3lq2KZDXw/company-logo_200_200/0/1519856511239?e=2147483647&v=beta&t=fMTWvMkHanM3yWhjn_LEU8HdFtnrBcCeTCOFu8mmQdY",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Singtel_Logo_New.png/449px-Singtel_Logo_New.png",
         description:
           "Singapore Telecommunications Limited, commonly known as Singtel, is a Singaporean telecommunications conglomerate and one of the four major telcos operating in the country.",
         address: "31 Exeter Road, Comcentre Singapore",
@@ -184,7 +184,7 @@ module.exports = {
         approval_by_admin: true,
         company_name: "Grand Mercure Roxy Hotel",
         company_logo:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgRsba9YoFx3G4Xjl2hrEVB7Pc7doMzaITOA&usqp=CAU",
+          "https://seekvectorlogo.com/wp-content/uploads/2018/01/grand-mercure-hotels-and-resorts-vector-logo-small.png",
         description:
           "Just 15 minutes away from Singapore’s Changi Airport and Marina Bay Cruise Centre, Grand Mercure Singapore Roxy lies in the heart of historical Katong – a heritage suburb in the East of the city. Rich in Peranakan influences, Katong comprises of a unique ethnic cluster that ensconces all of Singapore's Chinese, Malay, Indian and Eurasian cultures. Grand Mercure Singapore Roxy is close to everything that leisure and business travellers demand for an authentic and totally immersive Singapore travel experience.The hotel also serves as an excellent venue for holding your meetings, events and weddings with our function rooms, namely Roxy and the East Coast Ballroom. A Halal-certified kitchen is available.A short walk away is East Coast Park and the new Coastal PlayGrove– an ideal venue offering recreational facilities for families. Singapore's famous food centres are also just a stone’s throw away from the hotel. The surrounding attractions aside, Grand Mercure Singapore Roxy is a destination in itself. ",
         address: "50 East Coast Road, Marine Parade Rd, Roxy Square",
@@ -201,7 +201,7 @@ module.exports = {
         approval_by_admin: true,
         company_name: "SINGAPORE HAI DI LAO DINING PTE. LTD.",
         company_logo:
-          "https://www.haidilao-inc.com/sg/static/img/logo_en.d046b51a.svg",
+          "https://theladiescue.com/wp-content/uploads/2019/09/HDL-Logo.jpg",
         description:
           "The brand Haidilao was founded in 1994. With over 20 years of development, Haidilao International Holding Ltd. has become a world-renowned catering enterprise. By the end of June 30, 2020 ,Haidilao has opened 935 chain restaurants in China, Singapore, U.S., South Korea, Japan, Canada ,the United Kingdom, Malaysia , Vietnam,Indonesia and Australia.Over the years, Haidilao has withstood the challenges of the market as well as customers, and has successfully forged a quality hot pot brand which has earned a reputation for itself. Haidilao combines kinds of characteristics of hot pot in many places of China. As a large-scale chain catering enterprise with operations all over the world, Haidilao adheres to integrity in business. It gives the highest priority to continuously improving the quality and safety of its food products, providing more thoughtful services to its customers while delivering healthier, safer and more nutritious food.",
         address: "1 Paya Lebar Link Paya Lebar Quarter Singapore",
@@ -218,7 +218,7 @@ module.exports = {
         approval_by_admin: true,
         company_name: "SATA CommHealth",
         company_logo:
-          "https://www.sata.com.sg/wp-content/uploads/2019/12/cropped-SATA-CommHealth-Logo-4C-PNG-e1594639432813.png",
+          "https://media.glassdoor.com/sql/491863/sata-squarelogo-1639049358899.png",
         description:
           "SATA Commhealth provides lifelong healthcare in the community, through preventive and primary care including mental wellness via our medical centres in Ang Mo Kio, Bedok, Jurong, Tampines, Potong Pasir and Woodlands and Community Hub at Sengkang as well as mobile medical services and Community Programmes",
         address: "351 Chai Chee Street SATA CommHealth Building Singapore",
@@ -235,7 +235,7 @@ module.exports = {
         approval_by_admin: true,
         company_name: "Designworx Interior Consultant",
         company_logo:
-          "https://static.wixstatic.com/media/de7ac1_151119415983498f9fb4d9b32e501c7f~mv2.png/v1/fill/w_352,h_28,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Designworx%20Logo.png",
+          "https://static.wixstatic.com/media/de7ac1_30c621956e164b87b045d88f5e2acd37~mv2.jpg/v1/fit/w_2500,h_1330,al_c/de7ac1_30c621956e164b87b045d88f5e2acd37~mv2.jpg",
         description:
           "BEAUTIFUL SPACES are an inspiration to those beholding them. Designworx is a multiple award winning interior design company based in Singapore that has changed the way people perceive interiors. Led by Ms Terri Tan, in over two decades of its existence, it has left its mark on the interior spaces in Singapore combining modern design elements with functional sensibilities to create spaces that are inspiring, aesthetically pleasing yet practical. ",
         address: "237 Alexandra Road The Alexcier Singapore",
@@ -269,7 +269,7 @@ module.exports = {
         approval_by_admin: true,
         company_name: "ANGLO-CHINESE SCHOOL (INDEPENDENT)",
         company_logo:
-          "https://www.acsindep.moe.edu.sg/images/Homepage/acs(i)%20school%20crest_full%20colour.jpg",
+          "https://www.acsindep.moe.edu.sg/images/About%20ACS(I)/Heritage/Crest-2021.png",
         description:
           "A Methodist institution, ACS (Independent) has a strong foundation in spiritual values, a tradition of excellence and a global perspective. It was authorised as an International Baccalaureate (IB) World School in 2005 and is the pioneer national school to offer the IB Diploma Programme. Today the school offers two academic tracks: the four-year Express programme leading to the GCE O-Level Examinations, and the six-year Integrated Programme (IP) leading to the IB Diploma programme.",
         address: "121 Dover Road, Singapore",
