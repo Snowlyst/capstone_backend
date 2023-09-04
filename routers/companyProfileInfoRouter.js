@@ -22,10 +22,7 @@ class CompanyProfileInfoRouter {
     );
 
     router.get("/jobs/:jobId", this.controller.getOneJob.bind(this.controller));
-    router.delete(
-      "/delete/:entityId",
-      this.controller.deleteOne.bind(this.controller)
-    );
+
     return router;
   }
 }

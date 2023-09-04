@@ -87,20 +87,5 @@ class CompanyProfileInfoController extends BaseController {
       res.status(400).json({ error: true, msg: error.message });
     }
   }
-
-  async deleteOne(req, res) {
-    try {
-      const { entityId } = req.params;
-      const output = await this.userModel.destroy({
-        where: {
-          id: entityId,
-        },
-      });
-      res.status(200).json(output);
-    } catch (err) {
-      console.error(err);
-      return res.status(400).json({ error: true, msg: err.message });
-    }
-  }
 }
 module.exports = CompanyProfileInfoController;

@@ -29,7 +29,7 @@ class JobListingsRouter {
         this.controller.getListingByUserId.bind(this.controller)
       );
     router.get(
-      "/categories/sorted",
+      "/allcategories/sorted",
       this.controller.getAllCategorySorted.bind(this.controller)
     );
 
