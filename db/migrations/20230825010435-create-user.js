@@ -7,6 +7,8 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
         type: Sequelize.INTEGER,
       },
       user_role_id: {
@@ -30,6 +32,9 @@ module.exports = {
         type: Sequelize.STRING,
       },
       email: {
+        type: Sequelize.STRING,
+      },
+      avatar_url: {
         type: Sequelize.STRING,
       },
       created_at: {

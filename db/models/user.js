@@ -3,8 +3,12 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
-      this.belongsTo(models.user_role, { foreignKey: "userRoleId" });
-      this.hasOne(models.user_personal_detail, { foreignKey: "userId" });
+      this.belongsTo(models.user_role, {
+        foreignKey: "userRoleId",
+      });
+      this.hasOne(models.user_personal_detail, {
+        foreignKey: "userId",
+      });
       this.hasMany(models.user_resume_type, {
         foreignKey: "userId",
       });
@@ -51,6 +55,7 @@ module.exports = (sequelize, DataTypes) => {
       firstName: DataTypes.STRING,
       lastName: DataTypes.STRING,
       email: DataTypes.STRING,
+      avatarUrl: DataTypes.STRING,
     },
     {
       sequelize,
