@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       language: DataTypes.STRING,
       spoken: DataTypes.INTEGER,
-      writtent: DataTypes.INTEGER,
+      written: DataTypes.INTEGER,
       ifPrimary: DataTypes.BOOLEAN,
     },
     {
