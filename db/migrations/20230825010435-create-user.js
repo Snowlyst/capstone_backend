@@ -33,6 +33,7 @@ module.exports = {
       },
       email: {
         type: Sequelize.STRING,
+        unique: true,
       },
       avatar_url: {
         type: Sequelize.STRING,

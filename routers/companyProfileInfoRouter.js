@@ -22,10 +22,19 @@ class CompanyProfileInfoRouter {
     );
 
     router.get("/jobs/:jobId", this.controller.getOneJob.bind(this.controller));
-    router.delete(
-      "/delete/:entityId",
-      this.controller.deleteOne.bind(this.controller)
+
+    router.put(
+      "/admin/acceptunverifiedcompany",
+      this.jwtCheck,
+      this.controller.acceptUnverifiedCompany.bind(this.controller)
     );
+
+    router.delete(
+      "/admin/deleteunverifiedcompany/:entityId",
+      this.jwtCheck,
+      this.controller.deleteUnverifiedCompany.bind(this.controller)
+    );
+
     return router;
   }
 }

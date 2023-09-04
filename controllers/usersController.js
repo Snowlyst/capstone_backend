@@ -2,11 +2,18 @@ const BaseController = require("./baseController");
 // This just cover
 //UsersController(user, user_role, user_personal_detail);
 class UsersController extends BaseController {
-  constructor(user, userRoleModel, userPersonalDetailModel, companyModel) {
+  constructor(
+    user,
+    userRoleModel,
+    userPersonalDetailModel,
+    companyModel,
+    locationModel
+  ) {
     super(user);
     this.userRoleModel = userRoleModel;
     this.userPersonalDetailModel = userPersonalDetailModel;
     this.companyModel = companyModel;
+    this.locationModel = locationModel;
     console.log(userRoleModel);
   }
 
@@ -145,6 +152,7 @@ class UsersController extends BaseController {
   async deleteUnverifiedUser(req, res) {
     try {
       const { entityId } = req.params;
+
       const output = await this.model.destroy({
         where: {
           id: entityId,

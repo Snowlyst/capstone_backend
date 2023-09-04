@@ -43,7 +43,8 @@ const usersController = new UsersController(
   user,
   user_role,
   user_personal_detail,
-  company_profile_info
+  company_profile_info,
+  location
 );
 const userResumeTypeController = new UserResumeTypeController(user_resume_type);
 const companyProfileInfoController = new CompanyProfileInfoController(

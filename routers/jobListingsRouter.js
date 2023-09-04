@@ -21,6 +21,10 @@ class JobListingsRouter {
       this.controller.getOneCompanyListing.bind(this.controller)
     );
     router.get(
+      "/categories/sorted",
+      this.controller.getAllCategorySorted.bind(this.controller)
+    );
+    router.get(
       "/categories/:jobCategoryId",
       this.controller.getOneCategory.bind(this.controller)
     ),
@@ -28,10 +32,6 @@ class JobListingsRouter {
         "/companysearchbyuserid/:userId",
         this.controller.getListingByUserId.bind(this.controller)
       );
-    router.get(
-      "/categories/sorted",
-      this.controller.getAllCategorySorted.bind(this.controller)
-    );
 
     router.get(
       "/categories/:jobCategoryId",
@@ -65,6 +65,7 @@ class JobListingsRouter {
       this.jwtCheck,
       this.controller.requestChangeToJob.bind(this.controller)
     );
+
     // to add in protected route w jwt, eg
     // router.post(
     //   "/",
