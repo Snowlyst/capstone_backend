@@ -59,6 +59,9 @@ module.exports = {
       occupation: {
         type: Sequelize.STRING,
       },
+      monthlySalary: {
+        type: Sequelize.STRING,
+      },
       cancer_impact_on_finance: {
         type: Sequelize.STRING,
       },
