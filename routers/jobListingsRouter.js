@@ -32,6 +32,10 @@ class JobListingsRouter {
         "/companysearchbyuserid/:userId",
         this.controller.getListingByUserId.bind(this.controller)
       );
+    router.get(
+      "/allcategories/sorted",
+      this.controller.getAllCategorySorted.bind(this.controller)
+    );
 
     router.get(
       "/categories/:jobCategoryId",

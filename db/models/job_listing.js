@@ -32,6 +32,8 @@ module.exports = (sequelize, DataTypes) => {
       employmentType: DataTypes.STRING,
       title: DataTypes.TEXT,
       description: DataTypes.TEXT,
+      minSalary: DataTypes.INTEGER,
+      maxSalary: DataTypes.INTEGER,
       locationId: {
         type: DataTypes.INTEGER,
         references: {
