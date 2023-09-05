@@ -87,8 +87,6 @@ class CompanyProfileInfoController extends BaseController {
       res.status(400).json({ error: true, msg: error.message });
     }
   }
-<<<<<<< HEAD
-=======
 
   async acceptUnverifiedCompany(req, res) {
     try {
@@ -124,6 +122,5 @@ class CompanyProfileInfoController extends BaseController {
       res.status(400).json({ error: true, msg: error.message });
     }
   }
->>>>>>> main
 }
 module.exports = CompanyProfileInfoController;
