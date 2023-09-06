@@ -8,9 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.application_stage, {
         foreignKey: "status",
       });
-      this.hasOne(models.user_resume_type, {
-        foreignKey: "id",
-      });
+      this.hasMany(models.user_resume_type);
     }
   }
   individual_jobseeker_dashboard.init(
