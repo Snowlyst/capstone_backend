@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.belongsTo(models.user, { foreignKey: "userId" });
       this.belongsToMany(models.individual_jobseeker_dashboard, {
-        through: "dashboard_resume",
+        through: "dashboard_resumes",
       });
     }
   }

@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       });
       this.hasMany(models.application_stage, { foreignKey: "id" });
       this.belongsToMany(models.user_resume_type, {
-        through: "dashboard_resume",
+        through: "dashboard_resumes",
       });
     }
   }
