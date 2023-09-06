@@ -5,6 +5,9 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.belongsTo(models.user, { foreignKey: "userId" });
       this.belongsTo(models.job_listing, { foreignKey: "jobListingId" });
+      this.belongsTo(models.application_stages, {
+        foreignKey: "status",
+      });
       this.hasOne(models.user_resume_type, {
         foreignKey: "id",
       });
@@ -33,7 +36,16 @@ module.exports = (sequelize, DataTypes) => {
           key: "id",
         },
       },
-      status: DataTypes.STRING,
+      status: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: "application_stage",
+          key: "id",
+        },
+      },
+      reasonIfRejected: {
+        type: DataTypes.STRING,
+      },
       interviewDate: DataTypes.STRING,
     },
     {

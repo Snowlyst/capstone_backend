@@ -37,7 +37,11 @@ module.exports = {
         },
       },
       status: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
+        references: {
+          model: "application_stages",
+          key: "id",
+        },
       },
       interview_date: {
         type: Sequelize.STRING,
