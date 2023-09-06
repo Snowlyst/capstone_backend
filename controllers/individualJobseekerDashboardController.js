@@ -24,6 +24,67 @@ class IndividualJobseekerDashboardController extends BaseController {
           },
         ],
       });
+      console.log(output);
+      res.status(200).json(output);
+    } catch (error) {
+      console.log(error);
+      res.status(400).json(error);
+    }
+  }
+
+  async scheduleInterview(req, res) {
+    try {
+      const { idToEdit, startTime } = req.body;
+      const output = await this.model.update(
+        {
+          interviewDate: startTime,
+          status: 2,
+        },
+        {
+          where: {
+            id: idToEdit,
+          },
+        }
+      );
+      res.status(200).json(output);
+    } catch (error) {
+      console.log(error);
+      res.status(400).json(error);
+    }
+  }
+
+  async hireApplicant(req, res) {
+    try {
+      const { idToEdit } = req.body;
+      const output = await this.model.update(
+        {
+          status: 3,
+        },
+        {
+          where: {
+            id: idToEdit,
+          },
+        }
+      );
+      res.status(200).json(output);
+    } catch (error) {
+      console.log(error);
+      res.status(400).json(error);
+    }
+  }
+  async rejectApplicant(req, res) {
+    try {
+      const { idToEdit } = req.body;
+      const output = await this.model.update(
+        {
+          status: 4,
+        },
+        {
+          where: {
+            id: idToEdit,
+          },
+        }
+      );
       res.status(200).json(output);
     } catch (error) {
       console.log(error);
