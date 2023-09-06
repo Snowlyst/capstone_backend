@@ -25,7 +25,7 @@ class JobListingsRouter {
       this.controller.getAllCategorySorted.bind(this.controller)
     );
     router.get(
-      "/categories/:jobCategoryId",
+      "/categories/bycategory/:jobCategoryId",
       this.controller.getOneCategory.bind(this.controller)
     ),
       router.get(
@@ -35,11 +35,6 @@ class JobListingsRouter {
     router.get(
       "/allcategories/sorted",
       this.controller.getAllCategorySorted.bind(this.controller)
-    );
-
-    router.get(
-      "/categories/:jobCategoryId",
-      this.controller.getOneCategory.bind(this.controller)
     );
 
     router.post(

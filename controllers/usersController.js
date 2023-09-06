@@ -98,6 +98,7 @@ class UsersController extends BaseController {
           },
         ],
       });
+      console.log(output);
       return res.json(output);
     } catch (err) {
       console.log(err);
@@ -164,6 +165,36 @@ class UsersController extends BaseController {
       return res.status(400).json({ error: true, msg: err.message });
     }
   }
+  async retrieveProfile(req, res) {
+    try {
+      const { userId } = req.params;
+      console.log(req.body);
+
+      // const {output, created} = await this.userPersonalDetailModel.findOrCreate({
+      //   where: {
+      //     userId: fieldValues.id,
+      //     defaults: {
+      //       firstName: given_name || null,
+      //       lastName: family_name || null,
+      //       email: email,
+      //       userName: email,
+      //       userRoleId: role,
+      //       approvedByAdmin: false,
+      //     },
+      //   }
+      // })
+
+      // if (created) {
+      //   console.log("user is created!")
+      // } else {
+      //   console.log("user was retrieved")
+      // }
+      res.status(200).json("working!");
+    } catch (err) {
+      console.error(err);
+      return res.status(400).json({ error: true, msg: err.message });
+    }
+  }
 
   async checkVerifiedUsersAndCompany(req, res) {
     try {
@@ -209,4 +240,5 @@ class UsersController extends BaseController {
     }
   }
 }
+
 module.exports = UsersController;
