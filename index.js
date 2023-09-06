@@ -30,6 +30,8 @@ const {
   user_additional_detail,
   user_aboutme_detail,
   user_privacy_detail,
+  individual_jobseeker_dashboard,
+  application_stage,
 } = db;
 // import controller file area
 const UsersController = require("./controllers/usersController.js");
@@ -37,6 +39,7 @@ const UserResumeTypeController = require("./controllers/userResumeTypeController
 const JobListingsController = require("./controllers/jobListingsController.js");
 const CompanyProfileInfoController = require("./controllers/companyProfileInfoController");
 const CreateResumeController = require("./controllers/createResumeController");
+const IndividualJobseekerDashboardController = require("./controllers/individualJobseekerDashboardController");
 
 // put db stuff in controller section
 const usersController = new UsersController(
@@ -71,12 +74,21 @@ const createResumeController = new CreateResumeController(
   user_aboutme_detail,
   user_privacy_detail
 );
+
+const individualJobseekerDashboardController =
+  new IndividualJobseekerDashboardController(
+    individual_jobseeker_dashboard,
+    application_stage,
+    user,
+    user_resume_type
+  );
 // import router section
 const UsersRouter = require("./routers/usersRouter");
 const UserResumeTypeRouter = require("./routers/userResumeTypeRouter");
 const JobListingsRouter = require("./routers/jobListingsRouter");
 const CompanyProfileInfoRouter = require("./routers/companyProfileInfoRouter");
 const CreateResumeRouter = require("./routers/createResumeRouter");
+const IndividualJobseekerDashboardRouter = require("./routers/individualJobseekerDashboardRouter");
 
 // assign controller to router area
 const usersRouter = new UsersRouter(usersController, jwtCheck);
@@ -94,6 +106,11 @@ const companyProfileInfoRouter = new CompanyProfileInfoRouter(
 );
 
 const createResumeRouter = new CreateResumeRouter(createResumeController);
+const individualJobseekerDashboardRouter =
+  new IndividualJobseekerDashboardRouter(
+    individualJobseekerDashboardController,
+    jwtCheck
+  );
 //middleware
 app.use(cors(corsOptions));
 app.use(express.json());
@@ -104,6 +121,7 @@ app.use("/resumes", userResumeTypeRouter.routes());
 app.use("/company", companyProfileInfoRouter.routes());
 app.use("/listings", joblistingsRouter.routes());
 app.use("/createresume", createResumeRouter.routes());
+app.use("/application", individualJobseekerDashboardRouter.routes());
 
 app.listen(PORT, () => {
   console.log(`Express App listening on port ${PORT}`);

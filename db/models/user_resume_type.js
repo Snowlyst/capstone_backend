@@ -4,8 +4,8 @@ module.exports = (sequelize, DataTypes) => {
   class User_resume_type extends Model {
     static associate(models) {
       this.belongsTo(models.user, { foreignKey: "userId" });
-      this.belongsTo(models.individual_jobseeker_dashboard, {
-        foreignKey: "id",
+      this.belongsToMany(models.individual_jobseeker_dashboard, {
+        through: "dashboard_resume",
       });
     }
   }
