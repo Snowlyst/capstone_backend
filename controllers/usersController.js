@@ -168,28 +168,23 @@ class UsersController extends BaseController {
   async retrieveProfile(req, res) {
     try {
       const { userId } = req.params;
-      console.log(req.body);
+      console.log(userId);
+      const { fieldValues } = req.body;
 
-      // const {output, created} = await this.userPersonalDetailModel.findOrCreate({
-      //   where: {
-      //     userId: fieldValues.id,
-      //     defaults: {
-      //       firstName: given_name || null,
-      //       lastName: family_name || null,
-      //       email: email,
-      //       userName: email,
-      //       userRoleId: role,
-      //       approvedByAdmin: false,
-      //     },
-      //   }
-      // })
+      console.log(fieldValues);
+      const [output, created] = await this.userPersonalDetailModel.findOrCreate(
+        {
+          where: { userId: userId },
+          defaults: fieldValues,
+        }
+      );
 
-      // if (created) {
-      //   console.log("user is created!")
-      // } else {
-      //   console.log("user was retrieved")
-      // }
-      res.status(200).json("working!");
+      if (created) {
+        console.log("user is created!");
+      } else {
+        console.log("user was retrieved");
+      }
+      res.status(200).json(output);
     } catch (err) {
       console.error(err);
       return res.status(400).json({ error: true, msg: err.message });
