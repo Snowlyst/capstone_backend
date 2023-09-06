@@ -26,6 +26,9 @@ module.exports = {
       graduation_date: {
         type: Sequelize.STRING,
       },
+      qualification: {
+        type: Sequelize.STRING,
+      },
       institute_location: {
         type: Sequelize.STRING,
       },

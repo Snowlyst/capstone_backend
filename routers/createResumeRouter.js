@@ -10,6 +10,10 @@ class CreateResumeRouter {
       "/experience/:userId",
       this.controller.addExperience.bind(this.controller)
     );
+    router.get(
+      "/experience/:userId",
+      this.controller.getUserExperience.bind(this.controller)
+    );
     router.delete(
       "/experience/:experienceId",
       this.controller.deleteExperience.bind(this.controller)
@@ -23,6 +27,10 @@ class CreateResumeRouter {
       "/education/:userId",
       this.controller.addEducation.bind(this.controller)
     );
+    router.get(
+      "/education/:userId",
+      this.controller.getUserEducation.bind(this.controller)
+    );
     router.delete(
       "/education/:educationId",
       this.controller.deleteEducation.bind(this.controller)
@@ -34,6 +42,10 @@ class CreateResumeRouter {
     router.post(
       "/skill/:userId",
       this.controller.addSkill.bind(this.controller)
+    );
+    router.get(
+      "/skill/:userId",
+      this.controller.getSkill.bind(this.controller)
     );
     router.delete(
       "/skill/:skillId",
@@ -47,6 +59,10 @@ class CreateResumeRouter {
       "/language/:userId",
       this.controller.addLanguage.bind(this.controller)
     );
+    router.get(
+      "/language/:userId",
+      this.controller.getLanguage.bind(this.controller)
+    );
     router.delete(
       "/language/:languageId",
       this.controller.deleteLanguage.bind(this.controller)
@@ -59,6 +75,10 @@ class CreateResumeRouter {
       "/additionalinfo/:userId",
       this.controller.addInfo.bind(this.controller)
     );
+    router.get(
+      "/additionalinfo/:userId",
+      this.controller.getInfo.bind(this.controller)
+    );
     router.delete(
       "/additionalinfo/:additionalInfoId",
       this.controller.deleteInfo.bind(this.controller)
@@ -66,6 +86,10 @@ class CreateResumeRouter {
     router.put(
       "/additionalinfo/:additionalInfoId",
       this.controller.editInfo.bind(this.controller)
+    );
+    router.get(
+      "/aboutme/:userId",
+      this.controller.getSelf.bind(this.controller)
     );
     router.post(
       "/aboutme/:userId",
@@ -79,18 +103,18 @@ class CreateResumeRouter {
       "/aboutme/:selfInfoId",
       this.controller.editSelf.bind(this.controller)
     );
-     router.post(
-       "/privacy/:userId",
-       this.controller.addPrivacy.bind(this.controller)
-     );
-     router.delete(
-       "/privacy/:privacyId",
-       this.controller.deletePrivacy.bind(this.controller)
-     );
-     router.put(
-       "/privacy/:privacyId",
-       this.controller.editPrivacy.bind(this.controller)
-     );
+    router.post(
+      "/privacy/:userId",
+      this.controller.addPrivacy.bind(this.controller)
+    );
+    router.delete(
+      "/privacy/:privacyId",
+      this.controller.deletePrivacy.bind(this.controller)
+    );
+    router.put(
+      "/privacy/:privacyId",
+      this.controller.editPrivacy.bind(this.controller)
+    );
     return router;
   }
 }
