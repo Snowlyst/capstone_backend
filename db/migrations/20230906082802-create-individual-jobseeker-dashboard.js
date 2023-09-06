@@ -29,15 +29,24 @@ module.exports = {
           key: "id",
         },
       },
+      resume_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "user_resume_types",
+          key: "id",
+        },
+      },
       status: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
+        references: {
+          model: "application_stages",
+          key: "id",
+        },
       },
       interview_date: {
         type: Sequelize.STRING,
       },
-      interview_time: {
-        type: Sequelize.STRING,
-      },
+
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,

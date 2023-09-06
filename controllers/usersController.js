@@ -98,6 +98,7 @@ class UsersController extends BaseController {
           },
         ],
       });
+      console.log(output);
       return res.json(output);
     } catch (err) {
       console.log(err);
@@ -164,5 +165,31 @@ class UsersController extends BaseController {
       return res.status(400).json({ error: true, msg: err.message });
     }
   }
+  async retrieveProfile(req, res) {
+    try {
+      const { userId } = req.params;
+      console.log(userId);
+      const { fieldValues } = req.body;
+
+      console.log(fieldValues);
+      const [output, created] = await this.userPersonalDetailModel.findOrCreate(
+        {
+          where: { userId: userId },
+          defaults: fieldValues,
+        }
+      );
+
+      if (created) {
+        console.log("user is created!");
+      } else {
+        console.log("user was retrieved");
+      }
+      res.status(200).json(output);
+    } catch (err) {
+      console.error(err);
+      return res.status(400).json({ error: true, msg: err.message });
+    }
+  }
 }
+
 module.exports = UsersController;

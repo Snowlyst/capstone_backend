@@ -19,6 +19,12 @@ class UsersRouter {
     );
 
     router.post(
+      "/userprofile/:userId",
+      this.jwtCheck,
+      this.controller.retrieveProfile.bind(this.controller)
+    );
+
+    router.post(
       "/login",
       this.jwtCheck,
       this.controller.retrieveLogin.bind(this.controller)

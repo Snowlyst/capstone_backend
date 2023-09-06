@@ -44,7 +44,7 @@ module.exports = {
       housing_type: {
         type: Sequelize.STRING,
       },
-      address: {
+      street_address: {
         type: Sequelize.STRING,
       },
       unit_number: {
@@ -59,10 +59,13 @@ module.exports = {
       occupation: {
         type: Sequelize.STRING,
       },
+      monthly_salary: {
+        type: Sequelize.STRING,
+      },
       cancer_impact_on_finance: {
         type: Sequelize.STRING,
       },
-      date_of_last_unemployment: {
+      date_of_last_employment: {
         type: Sequelize.STRING,
       },
       readiness_to_rtw: {
@@ -71,7 +74,7 @@ module.exports = {
       time_frame_to_rtw: {
         type: Sequelize.STRING,
       },
-      employed_readiness_scale: {
+      employment_readiness_scale: {
         type: Sequelize.STRING,
       },
       current_health_status: {
