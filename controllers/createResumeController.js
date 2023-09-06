@@ -36,21 +36,43 @@ class CreateResumeController extends BaseController {
         monthlySalary,
         executiveSummary,
       } = req.body;
-      const output = this.userExperienceDetailModel.create({
-        userId: userId,
-        positionTitle: positionTitle,
-        companyName: companyName,
-        startPeriod: startPeriod,
-        endPeriod: endPeriod,
-        specialization: specialization,
-        role: role,
-        country: country,
-        industry: industry,
-        positionLevel: positionLevel,
-        monthlySalary: monthlySalary,
-        executiveSummary: executiveSummary,
+      const output = this.userExperienceDetailModel.findOrCreate({
+        where: {
+          userId: userId,
+          positionTitle: positionTitle,
+          companyName: companyName,
+        },
+        defaults: {
+          userId: userId,
+          positionTitle: positionTitle,
+          companyName: companyName,
+          startPeriod: startPeriod,
+          endPeriod: endPeriod,
+          specialization: specialization,
+          role: role,
+          country: country,
+          industry: industry,
+          positionLevel: positionLevel,
+          monthlySalary: monthlySalary,
+          executiveSummary: executiveSummary,
+        },
       });
       res.status(200).json(output);
+    } catch (err) {
+      console.log(err);
+      res.status(400).json({ success: false, error: err });
+    }
+  }
+
+  async getUserExperience(req, res) {
+    try {
+      const { userId } = req.params;
+      const output = await this.userExperienceDetailModel.findAll({
+        where: {
+          userId: userId,
+        },
+      });
+      res.status(200).json({ success: true, output });
     } catch (err) {
       console.log(err);
       res.status(400).json({ success: false, error: err });
@@ -124,23 +146,47 @@ class CreateResumeController extends BaseController {
       const {
         institute,
         graduationDate,
+        qualification,
         instituteLocation,
         fieldOfStudy,
         major,
         grade,
         award,
       } = req.body;
-      const output = this.userEducationalDetailModel.create({
-        userId: userId,
-        institute: institute,
-        graduationDate: graduationDate,
-        instituteLocation: instituteLocation,
-        fieldOfStudy: fieldOfStudy,
-        major: major,
-        grade: grade,
-        award: award,
+      const output = this.userEducationalDetailModel.findOrCreate({
+        where: {
+          userId: userId,
+          institute: institute,
+          instituteLocation: instituteLocation,
+          graduationDate: graduationDate,
+        },
+        defaults: {
+          userId: userId,
+          institute: institute,
+          graduationDate: graduationDate,
+          qualification: qualification,
+          instituteLocation: instituteLocation,
+          fieldOfStudy: fieldOfStudy,
+          major: major,
+          grade: grade,
+          award: award,
+        },
       });
       res.status(200).json(output);
+    } catch (err) {
+      console.log(err);
+      res.status(400).json({ success: false, error: err });
+    }
+  }
+  async getUserEducation(req, res) {
+    try {
+      const { userId } = req.params;
+      const output = await this.userEducationalDetailModel.findAll({
+        where: {
+          userId: userId,
+        },
+      });
+      res.status(200).json({ success: true, output });
     } catch (err) {
       console.log(err);
       res.status(400).json({ success: false, error: err });
@@ -165,6 +211,7 @@ class CreateResumeController extends BaseController {
       const {
         institute,
         graduationDate,
+        qualification,
         instituteLocation,
         fieldOfStudy,
         major,
@@ -176,6 +223,7 @@ class CreateResumeController extends BaseController {
         {
           institute: institute,
           graduationDate: graduationDate,
+          qualification: qualification,
           instituteLocation: instituteLocation,
           fieldOfStudy: fieldOfStudy,
           major: major,
@@ -200,14 +248,34 @@ class CreateResumeController extends BaseController {
       res.status(400).json({ success: false, error: err });
     }
   }
+  async getSkill(req, res) {
+    try {
+      const { userId } = req.params;
+      const output = await this.userSkillDetailModel.findAll({
+        where: {
+          userId: userId,
+        },
+      });
+      res.status(200).json({ success: true, output });
+    } catch (err) {
+      console.log(err);
+      res.status(400).json({ success: false, error: err });
+    }
+  }
   async addSkill(req, res) {
     try {
       const { userId } = req.params;
       const { skill, proficiency } = req.body;
-      const output = this.userSkillDetailModel.create({
-        userId: userId,
-        skill: skill,
-        proficiency: proficiency,
+      const output = this.userSkillDetailModel.findOrCreate({
+        where: {
+          userId: userId,
+          skill: skill,
+        },
+        defaults: {
+          userId: userId,
+          skill: skill,
+          proficiency: proficiency,
+        },
       });
       res.status(200).json(output);
     } catch (err) {
@@ -257,16 +325,36 @@ class CreateResumeController extends BaseController {
       res.status(400).json({ success: false, error: err });
     }
   }
+  async getLanguage(req, res) {
+    try {
+      const { userId } = req.params;
+      const output = await this.userLanguageDetailModel.findAll({
+        where: {
+          userId: userId,
+        },
+      });
+      res.status(200).json({ success: true, output });
+    } catch (err) {
+      console.log(err);
+      res.status(400).json({ success: false, error: err });
+    }
+  }
   async addLanguage(req, res) {
     try {
       const { userId } = req.params;
       const { language, spoken, written, ifPrimary } = req.body;
-      const output = this.userLanguageDetailModel.create({
-        userId: userId,
-        language: language,
-        spoken: spoken,
-        written: written,
-        ifPrimary: ifPrimary,
+      const output = this.userLanguageDetailModel.findOrCreate({
+        where: {
+          userId: userId,
+          language: language,
+        },
+        defaults: {
+          userId: userId,
+          language: language,
+          spoken: spoken,
+          written: written,
+          ifPrimary: ifPrimary,
+        },
       });
       res.status(200).json(output);
     } catch (err) {
@@ -318,15 +406,39 @@ class CreateResumeController extends BaseController {
       res.status(400).json({ success: false, error: err });
     }
   }
+  async getInfo(req, res) {
+    try {
+      const { userId } = req.params;
+      const output = await this.userAdditionalDetailModel.findAll({
+        where: {
+          userId: userId,
+        },
+      });
+      res.status(200).json({ success: true, output });
+    } catch (err) {
+      console.log(err);
+      res.status(400).json({ success: false, error: err });
+    }
+  }
   async addInfo(req, res) {
     try {
       const { userId } = req.params;
       const { expectedSalary, preferredWorkLocation } = req.body;
-      const output = this.userAdditionalDetailModel.create({
-        userId: userId,
-        expectedSalary: expectedSalary,
-        preferredWorkLocation: preferredWorkLocation,
-      });
+      const [output, created] =
+        await this.userAdditionalDetailModel.findOrCreate({
+          where: {
+            userId: userId,
+          },
+          defaults: {
+            userId: userId,
+            expectedSalary: expectedSalary,
+            preferredWorkLocation: preferredWorkLocation,
+          },
+        });
+      console.log(req.body);
+      console.log(expectedSalary);
+      console.log(preferredWorkLocation);
+      console.log(created);
       res.status(200).json(output);
     } catch (err) {
       console.log(err);
@@ -376,6 +488,20 @@ class CreateResumeController extends BaseController {
       res.status(400).json({ success: false, error: err });
     }
   }
+  async getSelf(req, res) {
+    try {
+      const { userId } = req.params;
+      const output = await this.userAboutmeDetailModel.findAll({
+        where: {
+          userId: userId,
+        },
+      });
+      res.status(200).json({ success: true, output });
+    } catch (err) {
+      console.log(err);
+      res.status(400).json({ success: false, error: err });
+    }
+  }
   async addSelf(req, res) {
     try {
       const { userId } = req.params;
@@ -400,6 +526,8 @@ class CreateResumeController extends BaseController {
         dateOfBirth: dateOfBirth,
         nationality: nationality,
       });
+      console.log(name);
+      console.log(email);
       res.status(200).json(output);
     } catch (err) {
       console.log(err);
