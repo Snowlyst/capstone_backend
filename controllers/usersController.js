@@ -190,6 +190,50 @@ class UsersController extends BaseController {
       return res.status(400).json({ error: true, msg: err.message });
     }
   }
+
+  async checkVerifiedUsersAndCompany(req, res) {
+    try {
+      const output1 = await this.model.findAll({
+        where: {
+          approvedByAdmin: true,
+        },
+        include: [
+          {
+            model: this.userPersonalDetailModel,
+          },
+        ],
+      });
+      const output2 = await this.companyModel.findAll({
+        where: {
+          approvalByAdmin: true,
+        },
+      });
+      res.status(200).json([output1, output2]);
+    } catch (err) {
+      console.error(err);
+      return res.status(400).json({ error: true, msg: err.message });
+    }
+  }
+
+  async unverifyUser(req, res) {
+    try {
+      const { userId } = req.body;
+      const output = await this.model.update(
+        {
+          approvedByAdmin: false,
+        },
+        {
+          where: {
+            id: userId,
+          },
+        }
+      );
+      res.status(200).json(output);
+    } catch (err) {
+      console.error(err);
+      return res.status(400).json({ error: true, msg: err.message });
+    }
+  }
 }
 
 module.exports = UsersController;

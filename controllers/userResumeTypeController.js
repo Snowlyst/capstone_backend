@@ -68,7 +68,7 @@ class UserResumeTypeController extends BaseController {
     try {
       const { userId } = req.params;
       const { resumeName, resumeDescription, resumeUrl } = req.body;
-      const output = this.model.create({
+      const output = await this.model.create({
         userId: userId,
         resumeTitle: resumeName,
         resumeDescription: resumeDescription,
@@ -78,6 +78,21 @@ class UserResumeTypeController extends BaseController {
     } catch (err) {
       console.log(err);
       res.status(400).json({ success: false, error: err });
+    }
+  }
+
+  async getOneResume(req, res) {
+    try {
+      const { resumeId } = req.params;
+      const output = await this.model.findAll({
+        where: {
+          id: resumeId,
+        },
+      });
+      res.status(200).json(output);
+    } catch (error) {
+      console.log(error);
+      res.status(400).json(error);
     }
   }
 }

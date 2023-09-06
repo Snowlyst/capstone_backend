@@ -8,6 +8,12 @@ class JobListingsRouter {
   }
   routes() {
     router.get("/", this.controller.getAllListing.bind(this.controller));
+
+    router.get(
+      "/getonejob/:jobId",
+      this.jwtCheck,
+      this.controller.getOneJob.bind(this.controller)
+    );
     router.get(
       "/categories/",
       this.controller.getAllCategory.bind(this.controller)

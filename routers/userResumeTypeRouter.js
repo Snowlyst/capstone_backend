@@ -31,6 +31,11 @@ class UserResumeTypeRouter {
       this.jwtCheck,
       this.controller.addOneResume.bind(this.controller)
     );
+    router.get(
+      "/getspecific/:resumeId",
+      this.jwtCheck,
+      this.controller.getOneResume.bind(this.controller)
+    );
 
     return router;
   }

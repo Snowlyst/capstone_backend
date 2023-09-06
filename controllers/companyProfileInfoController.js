@@ -122,5 +122,25 @@ class CompanyProfileInfoController extends BaseController {
       res.status(400).json({ error: true, msg: error.message });
     }
   }
+
+  async unverifyACompany(req, res) {
+    try {
+      const { companyId } = req.body;
+      const output = this.model.update(
+        {
+          approvalByAdmin: false,
+        },
+        {
+          where: {
+            id: companyId,
+          },
+        }
+      );
+      res.status(200).json(output);
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({ error: true, msg: error.message });
+    }
+  }
 }
 module.exports = CompanyProfileInfoController;

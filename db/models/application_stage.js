@@ -3,7 +3,9 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class application_stage extends Model {
     static associate(models) {
-      this.hasMany(models.individual_jobseeker_dashboard);
+      this.belongsTo(models.individual_jobseeker_dashboard, {
+        foreignKey: "id",
+      });
     }
   }
   application_stage.init(
