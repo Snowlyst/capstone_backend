@@ -3,7 +3,7 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class application_stage extends Model {
     static associate(models) {
-      this.hasMany(this.models.individual_jobseeker_dashboard);
+      this.hasMany(models.individual_jobseeker_dashboard);
     }
   }
   application_stage.init(
