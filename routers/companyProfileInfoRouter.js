@@ -35,6 +35,12 @@ class CompanyProfileInfoRouter {
       this.controller.deleteUnverifiedCompany.bind(this.controller)
     );
 
+    router.put(
+      "/admin/unverifycompany",
+      this.jwtCheck,
+      this.controller.unverifyACompany.bind(this.controller)
+    );
+
     return router;
   }
 }
