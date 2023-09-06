@@ -59,7 +59,7 @@ module.exports = {
       occupation: {
         type: Sequelize.STRING,
       },
-      monthlySalary: {
+      monthly_salary: {
         type: Sequelize.STRING,
       },
       cancer_impact_on_finance: {

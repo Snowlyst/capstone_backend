@@ -18,6 +18,22 @@ class JobListingsController extends BaseController {
       return res.status(400).json({ error: true, msg: err.message });
     }
   }
+
+  async getOneJob(req, res) {
+    try {
+      const { jobId } = req.params;
+      const output = await this.model.findAll({
+        where: {
+          id: jobId,
+        },
+      });
+      res.status(200).json(output);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json({ error: true, msg: err.message });
+    }
+  }
+
   async getOneCategory(req, res) {
     try {
       const { jobCategoryId } = req.params;
