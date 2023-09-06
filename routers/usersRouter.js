@@ -48,6 +48,18 @@ class UsersRouter {
       this.controller.deleteUnverifiedUser.bind(this.controller)
     );
 
+    router.get(
+      "/admin/checkverifiedusersandcompany",
+      this.jwtCheck,
+      this.controller.checkVerifiedUsersAndCompany.bind(this.controller)
+    );
+
+    router.put(
+      "/admin/unverifyuser",
+      this.jwtCheck,
+      this.controller.unverifyUser.bind(this.controller)
+    );
+
     // to add in protected route w jwt, eg
     // router.post(
     //   "/",

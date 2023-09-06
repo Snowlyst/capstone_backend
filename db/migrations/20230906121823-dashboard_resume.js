@@ -1,23 +1,24 @@
 "use strict";
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("dashboard_job_listings", {
+    await queryInterface.createTable("dashboard_resumes", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      job_listing_id: {
+      user_resume_type_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: "job_listings",
+          model: "user_resume_types",
           key: "id",
         },
       },
-      dashboard_id: {
+      individual_jobseeker_dashboard_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
@@ -35,7 +36,14 @@ module.exports = {
       },
     });
   },
+
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("dashboard_job_listings");
+    /**
+     * Add reverting commands here.
+     *
+     * Example:
+     * await queryInterface.dropTable('users');
+     */
+    await queryInterface.dropTable("dashboard_resumes");
   },
 };
