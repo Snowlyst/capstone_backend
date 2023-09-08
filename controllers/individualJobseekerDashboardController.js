@@ -58,7 +58,7 @@ class IndividualJobseekerDashboardController extends BaseController {
       const { idToEdit } = req.body;
       const output = await this.model.update(
         {
-          status: 3,
+          status: 4,
         },
         {
           where: {
@@ -77,7 +77,7 @@ class IndividualJobseekerDashboardController extends BaseController {
       const { idToEdit } = req.body;
       const output = await this.model.update(
         {
-          status: 4,
+          status: 3,
         },
         {
           where: {

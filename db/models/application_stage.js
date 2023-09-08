@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   class application_stage extends Model {
     static associate(models) {
       this.belongsTo(models.individual_jobseeker_dashboard, {
-        foreignKey: "stage",
+        foreignKey: "id",
       });
     }
   }
