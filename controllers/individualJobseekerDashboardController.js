@@ -91,5 +91,28 @@ class IndividualJobseekerDashboardController extends BaseController {
       res.status(400).json(error);
     }
   }
+
+  async getAllByUser(req, res) {
+    try {
+      const { userId } = req.params;
+      const output = await this.model.findAll({
+        where: {
+          userId: userId,
+        },
+        include: [
+          {
+            model: this.userModel,
+          },
+          {
+            model: this.jobListingModel,
+          },
+        ],
+      });
+      res.status(200).json(output);
+    } catch (error) {
+      console.log(error);
+      res.status(400).json(error);
+    }
+  }
 }
 module.exports = IndividualJobseekerDashboardController;
