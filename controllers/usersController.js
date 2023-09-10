@@ -20,7 +20,7 @@ class UsersController extends BaseController {
   async retrieveLogin(req, res) {
     const user = req.body;
     console.log(user);
-    const { given_name, family_name, email, role } = req.body;
+    const { given_name, family_name, email, role, picture } = req.body;
 
     try {
       const [checkedUser, created] = await this.model.findOrCreate({
@@ -28,6 +28,7 @@ class UsersController extends BaseController {
         defaults: {
           firstName: given_name || null,
           lastName: family_name || null,
+          avatarUrl: picture || null,
           email: email,
           userName: email,
           userRoleId: role,

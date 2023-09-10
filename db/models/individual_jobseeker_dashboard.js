@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsToMany(models.job_listing, {
         through: "dashboard_job_listing",
       });
-      this.hasMany(models.application_stage, { foreignKey: "id" });
+
       this.belongsToMany(models.user_resume_type, {
         through: "dashboard_resumes",
       });
