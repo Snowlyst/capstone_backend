@@ -3,11 +3,18 @@ const cheerio = require("cheerio");
 const puppeteer = require("puppeteer");
 
 class JobListingsController extends BaseController {
-  constructor(model, jobCategoryModel, companyProfileInfoModel, locationModel) {
+  constructor(
+    model,
+    jobCategoryModel,
+    companyProfileInfoModel,
+    locationModel,
+    jobseekerDashboardModel
+  ) {
     super(model);
     this.jobCategoryModel = jobCategoryModel;
     this.companyProfileInfoModel = companyProfileInfoModel;
     this.locationModel = locationModel;
+    this.jobseekerDashboardModel = jobseekerDashboardModel;
   }
   async getAllListing(req, res) {
     try {
@@ -110,6 +117,9 @@ class JobListingsController extends BaseController {
         include: [
           {
             model: this.locationModel,
+          },
+          {
+            model: this.jobseekerDashboardModel,
           },
         ],
       });

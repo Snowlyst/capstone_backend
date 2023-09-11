@@ -29,8 +29,7 @@ module.exports = {
         user_id: 1,
         approval_by_admin: true,
         company_name: "OCBC Bank",
-        company_logo:
-          "https://companieslogo.com/img/orig/O39.SI-d00b23e8.png?t=1648146507",
+        company_logo: "https://asset.brandfetch.io/idY-deZG93/idpW6_fq02.png",
         description:
           "Oversea-Chinese Banking Corporation, Limited, often known as OCBC Bank, is a Singapore multinational banking and financial services corporation headquartered in OCBC Centre, Singapore.",
         address: "65 Chulia St, OCBC Centre, Singapore",
@@ -47,7 +46,7 @@ module.exports = {
         approval_by_admin: true,
         company_name: "Capitaland",
         company_logo:
-          "https://www.capitaland.com/content/dam/capitaland-common/logos/CapitaLand_logo.jpg",
+          "https://w7.pngwing.com/pngs/123/835/png-transparent-capitaland-hd-logo-thumbnail.png",
         description:
           "CapitaLand is a Singaporean headquartered company focusing on investment, development and management of real estate.",
         address: "168 Robinson Road Capital Tower Singapore",
@@ -64,7 +63,7 @@ module.exports = {
         approval_by_admin: true,
         company_name: "Wilmar International ",
         company_logo:
-          "https://media.licdn.com/dms/image/C4E0BAQGQ9l_myxwduA/company-logo_200_200/0/1519891297293?e=2147483647&v=beta&t=xWFGSJpoEl2fpTTSiwwFfSBHH5feZ7no43Hnq3qwInE",
+          "https://vectorseek.com/wp-content/uploads/2023/09/Wilmar-International-Logo-Vector-Logo-Vector.svg-.png",
         description:
           "Wilmar International Limited is a Singaporean food processing and investment holding company with more than 300 subsidiary companies. Founded in 1991, it is one of Asia's leading agribusiness groups alongside the COFCO Group.",
         address: "28 Biopolis Road Singapore",
@@ -82,7 +81,7 @@ module.exports = {
         approval_by_admin: true,
         company_name: "Grab",
         company_logo:
-          "https://assets.grab.com/wp-content/uploads/sites/4/2021/04/15151634/Grab_Logo_2021.jpg",
+          "https://seeklogo.com/images/G/grab-logo-7020E74857-seeklogo.com.png",
         description:
           "Grab Holdings Inc. is a multinational technology company headquartered in One-north, Singapore. It is the developer of a super-app for transportation, food delivery and digital payments services on mobile devices that operates in Singapore, Malaysia, Cambodia, Indonesia, Myanmar, the Philippines, Thailand and Vietnam.",
         address: "3 Media Cl, One-north, Singapore",
@@ -99,7 +98,7 @@ module.exports = {
         approval_by_admin: true,
         company_name: "Keppel Corporation",
         company_logo:
-          "https://3.bp.blogspot.com/-yMfE7aWARUI/WEgd-znNneI/AAAAAAAAHsE/5t2c0xh5kj0sypIz1GgLTI11yVkHvo13QCLcB/s1600/Keppel%2BCorporation.png",
+          "https://companieslogo.com/img/orig/BN4.SI-6646cc85.png?t=1593691292",
         description:
           "Keppel Corporation is a Singaporean conglomerate headquartered in Keppel Bay Tower, HarbourFront. The company consists of several affiliated businesses that specialises in property, infrastructure and asset management businesses.",
         address: "1 Harbourfront Avenue, Keppel Bay Tower, Singapore",
@@ -116,7 +115,7 @@ module.exports = {
         approval_by_admin: true,
         company_name: "ComfortDelGro",
         company_logo:
-          "https://seekvectorlogo.com/wp-content/uploads/2018/04/comfortdelgro-vector-logo-small.png",
+          "https://images.crunchbase.com/image/upload/c_lpad,h_170,w_170,f_auto,b_white,q_auto:eco,dpr_1/i6vya3zqgrhhua2rlyo1",
         description:
           "ComfortDelGro Corporation is a multi-national land transport company listed on the Singapore Exchange, operating about 35,000 vehicles in seven countries. It was formed on 29 March 2003 through a merger of Singapore-based land transport companies Comfort Group and DelGro Corporation",
         address: "205 Braddell Road, Singapore",
@@ -133,7 +132,7 @@ module.exports = {
         approval_by_admin: true,
         company_name: "Singapore Technologies Engineering",
         company_logo:
-          "https://www.logotypes101.com/logos/205/96BA752BA3BE7A1B2FFFFE1666070BCB/Singapore_Technologies.png",
+          "https://companieslogo.com/img/orig/S63.SI-896d8c31.png?t=1594123985",
         description:
           "Singapore Technologies Engineering Ltd, doing business as ST Engineering, is a Singaporean multinational technology and engineering group in the aerospace, smart city as well as defence and public security sectors.",
         address: "1 Ang Mo Kio Electronics Park Road, Singapore",
@@ -167,7 +166,7 @@ module.exports = {
         approval_by_admin: true,
         company_name: "Singtel",
         company_logo:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Singtel_Logo_New.png/449px-Singtel_Logo_New.png",
+          "https://seeklogo.com/images/S/singtel-new-logo-66DDDC810A-seeklogo.com.png",
         description:
           "Singapore Telecommunications Limited, commonly known as Singtel, is a Singaporean telecommunications conglomerate and one of the four major telcos operating in the country.",
         address: "31 Exeter Road, Comcentre Singapore",
@@ -201,7 +200,7 @@ module.exports = {
         approval_by_admin: true,
         company_name: "SINGAPORE HAI DI LAO DINING PTE. LTD.",
         company_logo:
-          "https://theladiescue.com/wp-content/uploads/2019/09/HDL-Logo.jpg",
+          "https://companieslogo.com/img/orig/6862.HK-343b2a76.png?t=1596178945",
         description:
           "The brand Haidilao was founded in 1994. With over 20 years of development, Haidilao International Holding Ltd. has become a world-renowned catering enterprise. By the end of June 30, 2020 ,Haidilao has opened 935 chain restaurants in China, Singapore, U.S., South Korea, Japan, Canada ,the United Kingdom, Malaysia , Vietnam,Indonesia and Australia.Over the years, Haidilao has withstood the challenges of the market as well as customers, and has successfully forged a quality hot pot brand which has earned a reputation for itself. Haidilao combines kinds of characteristics of hot pot in many places of China. As a large-scale chain catering enterprise with operations all over the world, Haidilao adheres to integrity in business. It gives the highest priority to continuously improving the quality and safety of its food products, providing more thoughtful services to its customers while delivering healthier, safer and more nutritious food.",
         address: "1 Paya Lebar Link Paya Lebar Quarter Singapore",
@@ -218,7 +217,7 @@ module.exports = {
         approval_by_admin: true,
         company_name: "SATA CommHealth",
         company_logo:
-          "https://media.glassdoor.com/sql/491863/sata-squarelogo-1639049358899.png",
+          "https://www.sata.com.sg/wp-content/uploads/2019/12/cropped-SATA-CommHealth-Logo-4C-PNG-e1594639432813.png",
         description:
           "SATA Commhealth provides lifelong healthcare in the community, through preventive and primary care including mental wellness via our medical centres in Ang Mo Kio, Bedok, Jurong, Tampines, Potong Pasir and Woodlands and Community Hub at Sengkang as well as mobile medical services and Community Programmes",
         address: "351 Chai Chee Street SATA CommHealth Building Singapore",
