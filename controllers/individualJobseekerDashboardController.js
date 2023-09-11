@@ -1,20 +1,11 @@
 const BaseController = require("./baseController");
 
 class IndividualJobseekerDashboardController extends BaseController {
-  constructor(
-    model,
-    applicationStageModel,
-    userModel,
-    resumeModel,
-    userPersonalDetail,
-    jobListingModel
-  ) {
+  constructor(model, applicationStageModel, userModel, resumeModel) {
     super(model);
     this.applicationStageModel = applicationStageModel;
     this.userModel = userModel;
     this.resumeModel = resumeModel;
-    this.userPersonalDetail = userPersonalDetail;
-    this.jobListingModel = jobListingModel;
   }
   async getOneApplication(req, res) {
     try {
@@ -22,16 +13,11 @@ class IndividualJobseekerDashboardController extends BaseController {
       const output = await this.model.findAll({
         where: {
           jobListingId: jobId,
-          applicationStageId: [1, 2],
+          status: [1, 2],
         },
         include: [
           {
             model: this.userModel,
-            include: [
-              {
-                model: this.userPersonalDetail,
-              },
-            ],
           },
           {
             model: this.applicationStageModel,
@@ -72,7 +58,7 @@ class IndividualJobseekerDashboardController extends BaseController {
       const { idToEdit } = req.body;
       const output = await this.model.update(
         {
-          status: 4,
+          status: 3,
         },
         {
           where: {
@@ -91,7 +77,7 @@ class IndividualJobseekerDashboardController extends BaseController {
       const { idToEdit } = req.body;
       const output = await this.model.update(
         {
-          status: 3,
+          status: 4,
         },
         {
           where: {
@@ -112,7 +98,6 @@ class IndividualJobseekerDashboardController extends BaseController {
       const output = await this.model.findAll({
         where: {
           userId: userId,
-          applicationStageId: [1, 2, 3, 4],
         },
         include: [
           {
@@ -121,34 +106,12 @@ class IndividualJobseekerDashboardController extends BaseController {
           {
             model: this.jobListingModel,
           },
-          {
-            model: this.applicationStageModel,
-          },
         ],
       });
       res.status(200).json(output);
     } catch (error) {
       console.log(error);
       res.status(400).json(error);
-    }
-  }
-
-  async withdrawApplication(req, res) {
-    try {
-      const { idToDelete } = req.body;
-      const output = await this.model.update(
-        {
-          applicationStageId: 5,
-        },
-        {
-          where: {
-            id: idToDelete,
-          },
-        }
-      );
-      res.status(200).json(output);
-    } catch (error) {
-      console.log(error);
     }
   }
 }

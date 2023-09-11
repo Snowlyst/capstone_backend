@@ -3,11 +3,19 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class application_stage extends Model {
     static associate(models) {
-      this.hasMany(models.individual_jobseeker_dashboard);
+      this.belongsTo(models.individual_jobseeker_dashboard, {
+        foreignKey: "stage",
+      });
     }
   }
   application_stage.init(
     {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        unique: true,
+        autoIncrement: true,
+      },
       stage: DataTypes.STRING,
     },
     {
