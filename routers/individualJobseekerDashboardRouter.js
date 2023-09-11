@@ -15,6 +15,12 @@ class IndividualJobseekerDashboardRouter {
       this.controller.getOneApplication.bind(this.controller)
     );
 
+    router.get(
+      "/getallbyuser/:userId",
+      this.jwtCheck,
+      this.controller.getAllByUser.bind(this.controller)
+    );
+
     router.put(
       "/scheduleinterview",
       this.jwtCheck,

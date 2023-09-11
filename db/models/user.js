@@ -6,39 +6,18 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.user_role, {
         foreignKey: "userRoleId",
       });
-      this.hasOne(models.user_personal_detail, {
-        foreignKey: "userId",
-      });
-      this.hasMany(models.user_resume_type, {
-        foreignKey: "userId",
-      });
-      this.hasMany(models.user_experience_detail, {
-        foreignKey: "userId",
-      });
-      this.hasMany(models.user_educational_detail, {
-        foreignKey: "userId",
-      });
-      this.hasMany(models.user_skill_detail, {
-        foreignKey: "userId",
-      });
-      this.hasMany(models.user_language_detail, {
-        foreignKey: "userId",
-      });
-      this.hasOne(models.user_additional_detail, {
-        foreignKey: "userId",
-      });
-      this.hasOne(models.user_aboutme_detail, {
-        foreignKey: "userId",
-      });
-      this.hasOne(models.user_privacy_detail, {
-        foreignKey: "userId",
-      });
-      this.hasMany(models.company_profile_info, {
-        foreignKey: "userId",
-      });
-      this.hasMany(models.individual_jobseeker_dashboard, {
-        foreignKey: "userId",
-      });
+      this.hasOne(models.user_personal_detail);
+      this.hasMany(models.user_resume_type);
+      this.hasMany(models.user_experience_detail);
+      this.hasMany(models.user_educational_detail);
+      this.hasMany(models.user_skill_detail);
+      this.hasMany(models.user_language_detail);
+      this.hasOne(models.user_additional_detail);
+      this.hasOne(models.user_aboutme_detail);
+      this.hasOne(models.user_privacy_detail);
+      this.hasMany(models.company_profile_info);
+      this.hasMany(models.individual_jobseeker_dashboard);
+      this.hasMany(models.job_listing);
     }
   }
   User.init(
