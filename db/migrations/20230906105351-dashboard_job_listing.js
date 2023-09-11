@@ -17,9 +17,11 @@ module.exports = {
           key: "id",
         },
       },
-      dashboard_id: {
+      individual_jobseeker_dashboard_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
         references: {
           model: "individual_jobseeker_dashboards",
           key: "id",

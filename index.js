@@ -61,7 +61,8 @@ const joblistingsController = new JobListingsController(
   job_listing,
   job_category,
   company_profile_info,
-  location
+  location,
+  individual_jobseeker_dashboard
 );
 
 const createResumeController = new CreateResumeController(
@@ -80,7 +81,9 @@ const individualJobseekerDashboardController =
     individual_jobseeker_dashboard,
     application_stage,
     user,
-    user_resume_type
+    user_resume_type,
+    user_personal_detail,
+    job_listing
   );
 // import router section
 const UsersRouter = require("./routers/usersRouter");

@@ -24,6 +24,11 @@ module.exports = {
         created_at: new Date(),
         updated_at: new Date(),
       },
+      {
+        stage: "Application Withdrawn",
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
     ]);
   },
 

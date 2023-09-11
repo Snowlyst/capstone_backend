@@ -33,6 +33,18 @@ class IndividualJobseekerDashboardRouter {
       this.controller.hireApplicant.bind(this.controller)
     );
 
+    router.get(
+      "/getallbyuser/:userId",
+      this.jwtCheck,
+      this.controller.getAllByUser.bind(this.controller)
+    );
+
+    router.put(
+      "/withdrawapplication",
+      this.jwtCheck,
+      this.controller.withdrawApplication.bind(this.controller)
+    );
+
     return router;
   }
 }
