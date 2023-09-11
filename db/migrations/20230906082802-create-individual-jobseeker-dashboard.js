@@ -36,7 +36,7 @@ module.exports = {
           key: "id",
         },
       },
-      application_stage_id: {
+      status: {
         type: Sequelize.INTEGER,
         references: {
           model: "application_stages",

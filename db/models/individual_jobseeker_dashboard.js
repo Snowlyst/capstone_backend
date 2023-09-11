@@ -5,11 +5,9 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.belongsTo(models.user, { foreignKey: "userId" });
       this.belongsToMany(models.job_listing, {
-        through: "dashboard_job_listings",
+        through: "dashboard_job_listing",
       });
-      this.belongsTo(models.application_stage, {
-        foreignKey: "applicationStageId",
-      });
+
       this.belongsToMany(models.user_resume_type, {
         through: "dashboard_resumes",
       });
@@ -38,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
           key: "id",
         },
       },
-      applicationStageId: {
+      status: {
         type: DataTypes.INTEGER,
         references: {
           model: "application_stage",
