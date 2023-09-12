@@ -142,5 +142,17 @@ class CompanyProfileInfoController extends BaseController {
       res.status(400).json({ error: true, msg: error.message });
     }
   }
+
+  async getAllCompany(req, res) {
+    try {
+      const output = await this.model.findAll({
+        order: [["companyName", "ASC"]],
+      });
+      res.status(200).json(output);
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({ error: true, msg: error.message });
+    }
+  }
 }
 module.exports = CompanyProfileInfoController;
