@@ -2,12 +2,14 @@ const express = require("express");
 const router = express.Router();
 
 class CreateResumeRouter {
-  constructor(controller) {
+  constructor(controller, jwtCheck) {
     this.controller = controller;
+    this.jwtCheck =jwtCheck
   }
   routes() {
     router.post(
       "/experience/:userId",
+      //this.jwtCheck,
       this.controller.addExperience.bind(this.controller)
     );
     router.get(
