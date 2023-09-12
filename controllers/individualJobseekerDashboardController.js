@@ -22,7 +22,6 @@ class IndividualJobseekerDashboardController extends BaseController {
       const output = await this.model.findAll({
         where: {
           jobListingId: jobId,
-          applicationStageId: [1, 2],
         },
         include: [
           {
