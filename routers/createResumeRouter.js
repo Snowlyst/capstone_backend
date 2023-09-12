@@ -2,12 +2,14 @@ const express = require("express");
 const router = express.Router();
 
 class CreateResumeRouter {
-  constructor(controller) {
+  constructor(controller, jwtCheck) {
     this.controller = controller;
+    this.jwtCheck=jwtCheck;
   }
   routes() {
     router.post(
       "/experience/:userId",
+      this.jwtCheck,
       this.controller.addExperience.bind(this.controller)
     );
     router.get(
@@ -25,6 +27,7 @@ class CreateResumeRouter {
 
     router.post(
       "/education/:userId",
+      this.jwtCheck,
       this.controller.addEducation.bind(this.controller)
     );
     router.get(
@@ -41,6 +44,7 @@ class CreateResumeRouter {
     );
     router.post(
       "/skill/:userId",
+      this.jwtCheck,
       this.controller.addSkill.bind(this.controller)
     );
     router.get(
@@ -57,6 +61,7 @@ class CreateResumeRouter {
     );
     router.post(
       "/language/:userId",
+      this.jwtCheck,
       this.controller.addLanguage.bind(this.controller)
     );
     router.get(
@@ -73,6 +78,7 @@ class CreateResumeRouter {
     );
     router.post(
       "/additionalinfo/:userId",
+      this.jwtCheck,
       this.controller.addInfo.bind(this.controller)
     );
     router.get(
@@ -93,6 +99,7 @@ class CreateResumeRouter {
     );
     router.post(
       "/aboutme/:userId",
+      this.jwtCheck,
       this.controller.addSelf.bind(this.controller)
     );
     router.delete(
@@ -105,6 +112,7 @@ class CreateResumeRouter {
     );
     router.post(
       "/privacy/:userId",
+      this.jwtCheck,
       this.controller.addPrivacy.bind(this.controller)
     );
     router.delete(

@@ -36,27 +36,34 @@ class CreateResumeController extends BaseController {
         monthlySalary,
         executiveSummary,
       } = req.body;
-      const output = this.userExperienceDetailModel.findOrCreate({
-        where: {
-          userId: userId,
-          positionTitle: positionTitle,
-          companyName: companyName,
-        },
-        defaults: {
-          userId: userId,
-          positionTitle: positionTitle,
-          companyName: companyName,
-          startPeriod: startPeriod,
-          endPeriod: endPeriod,
-          specialization: specialization,
-          role: role,
-          country: country,
-          industry: industry,
-          positionLevel: positionLevel,
-          monthlySalary: monthlySalary,
-          executiveSummary: executiveSummary,
-        },
-      });
+      const [output, created] =
+        await this.userExperienceDetailModel.findOrCreate({
+          where: {
+            userId: userId,
+            positionTitle: positionTitle,
+            companyName: companyName,
+          },
+          defaults: {
+            userId: userId,
+            positionTitle: positionTitle,
+            companyName: companyName,
+            startPeriod: startPeriod,
+            endPeriod: endPeriod,
+            specialization: specialization,
+            role: role,
+            country: country,
+            industry: industry,
+            positionLevel: positionLevel,
+            monthlySalary: monthlySalary,
+            executiveSummary: executiveSummary,
+          },
+        });
+        console.log(output)
+      if (created) {
+        console.log("User Created!");
+      } else {
+        console.log("User retrieved!");
+      }
       res.status(200).json(output);
     } catch (err) {
       console.log(err);
@@ -153,7 +160,7 @@ class CreateResumeController extends BaseController {
         grade,
         award,
       } = req.body;
-      const output = this.userEducationalDetailModel.findOrCreate({
+      const [output, created] = await this.userEducationalDetailModel.findOrCreate({
         where: {
           userId: userId,
           institute: institute,
@@ -172,6 +179,11 @@ class CreateResumeController extends BaseController {
           award: award,
         },
       });
+       if (created) {
+         console.log("User Created!");
+       } else {
+         console.log("User retrieved!");
+       }
       res.status(200).json(output);
     } catch (err) {
       console.log(err);
@@ -266,7 +278,7 @@ class CreateResumeController extends BaseController {
     try {
       const { userId } = req.params;
       const { skill, proficiency } = req.body;
-      const output = this.userSkillDetailModel.findOrCreate({
+      const [output, created] = await this.userSkillDetailModel.findOrCreate({
         where: {
           userId: userId,
           skill: skill,
@@ -277,6 +289,11 @@ class CreateResumeController extends BaseController {
           proficiency: proficiency,
         },
       });
+       if (created) {
+         console.log("User Created!");
+       } else {
+         console.log("User retrieved!");
+       }
       res.status(200).json(output);
     } catch (err) {
       console.log(err);
@@ -343,7 +360,7 @@ class CreateResumeController extends BaseController {
     try {
       const { userId } = req.params;
       const { language, spoken, written, ifPrimary } = req.body;
-      const output = this.userLanguageDetailModel.findOrCreate({
+      const [output, created] = await this.userLanguageDetailModel.findOrCreate({
         where: {
           userId: userId,
           language: language,
@@ -356,6 +373,11 @@ class CreateResumeController extends BaseController {
           ifPrimary: ifPrimary,
         },
       });
+       if (created) {
+         console.log("User Created!");
+       } else {
+         console.log("User retrieved!");
+       }
       res.status(200).json(output);
     } catch (err) {
       console.log(err);

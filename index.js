@@ -105,7 +105,7 @@ const companyProfileInfoRouter = new CompanyProfileInfoRouter(
   jwtCheck
 );
 
-const createResumeRouter = new CreateResumeRouter(createResumeController);
+const createResumeRouter = new CreateResumeRouter(createResumeController, jwtCheck);
 const individualJobseekerDashboardRouter =
   new IndividualJobseekerDashboardRouter(
     individualJobseekerDashboardController,
