@@ -17,7 +17,7 @@ module.exports = {
           key: "id",
         },
       },
-      dashboard_id: {
+      individual_jobseeker_dashboard_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {

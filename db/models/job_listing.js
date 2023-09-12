@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.job_category, { foreignKey: "jobCategoryId" });
       this.belongsTo(models.company_profile_info, { foreignKey: "companyId" });
       this.belongsToMany(models.individual_jobseeker_dashboard, {
-        through: "dashboard_job_listing",
+        through: "dashboard_job_listings",
       });
       this.belongsTo(models.location, { foreignKey: "locationId" });
     }
@@ -41,8 +41,6 @@ module.exports = (sequelize, DataTypes) => {
           key: "id",
         },
       },
-      minSalary: DataTypes.INTEGER,
-      maxSalary: DataTypes.INTEGER,
     },
     {
       sequelize,

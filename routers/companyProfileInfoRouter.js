@@ -41,6 +41,7 @@ class CompanyProfileInfoRouter {
       this.controller.unverifyACompany.bind(this.controller)
     );
 
+    router.get("/sorted", this.controller.getAllCompany.bind(this.controller));
     return router;
   }
 }
