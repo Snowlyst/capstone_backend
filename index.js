@@ -80,7 +80,9 @@ const individualJobseekerDashboardController =
     individual_jobseeker_dashboard,
     application_stage,
     user,
-    user_resume_type
+    user_resume_type,
+    user_personal_detail,
+    job_listing
   );
 // import router section
 const UsersRouter = require("./routers/usersRouter");
@@ -105,7 +107,10 @@ const companyProfileInfoRouter = new CompanyProfileInfoRouter(
   jwtCheck
 );
 
-const createResumeRouter = new CreateResumeRouter(createResumeController, jwtCheck);
+const createResumeRouter = new CreateResumeRouter(
+  createResumeController,
+  jwtCheck
+);
 
 const individualJobseekerDashboardRouter =
   new IndividualJobseekerDashboardRouter(

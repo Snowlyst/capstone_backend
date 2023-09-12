@@ -7,7 +7,9 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsToMany(models.job_listing, {
         through: "dashboard_job_listing",
       });
-      this.hasMany(models.application_stage, { foreignKey: "id" });
+      this.belongsTo(models.application_stage, {
+        foreignKey: "applicationStageId",
+      });
       this.belongsToMany(models.user_resume_type, {
         through: "dashboard_resumes",
       });
@@ -36,16 +38,13 @@ module.exports = (sequelize, DataTypes) => {
           key: "id",
         },
       },
-      status: {
+      applicationStageId: {
         type: DataTypes.INTEGER,
         references: {
           model: "application_stage",
           key: "id",
         },
       },
-      // reasonIfRejected: {
-      //   type: DataTypes.STRING,
-      // },
       interviewDate: DataTypes.STRING,
     },
     {
