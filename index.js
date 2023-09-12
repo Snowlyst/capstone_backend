@@ -61,7 +61,8 @@ const joblistingsController = new JobListingsController(
   job_listing,
   job_category,
   company_profile_info,
-  location
+  location,
+  individual_jobseeker_dashboard
 );
 
 const createResumeController = new CreateResumeController(
