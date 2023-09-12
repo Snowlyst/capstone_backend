@@ -45,6 +45,12 @@ class IndividualJobseekerDashboardRouter {
       this.controller.withdrawApplication.bind(this.controller)
     );
 
+    router.post(
+      "/submitapplication",
+      this.jwtCheck,
+      this.controller.submitApplication.bind(this.controller)
+    );
+
     return router;
   }
 }
