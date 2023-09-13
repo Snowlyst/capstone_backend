@@ -22,7 +22,6 @@ class IndividualJobseekerDashboardController extends BaseController {
       const output = await this.model.findAll({
         where: {
           jobListingId: jobId,
-          applicationStageId: [1, 2],
         },
         include: [
           {
@@ -149,6 +148,23 @@ class IndividualJobseekerDashboardController extends BaseController {
       res.status(200).json(output);
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  async submitApplication(req, res) {
+    try {
+      const { jobId, resumeId, userId } = req.body;
+      const output = await this.model.create({
+        jobListingId: jobId,
+        userId: userId,
+        resumeId: resumeId,
+        applicationStageId: 1,
+        interviewDate: null,
+      });
+      res.status(200).json(output);
+    } catch (error) {
+      console.log(error);
+      res.status(400).json(error);
     }
   }
 }

@@ -5,9 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.belongsTo(models.job_category, { foreignKey: "jobCategoryId" });
       this.belongsTo(models.company_profile_info, { foreignKey: "companyId" });
-      this.belongsToMany(models.individual_jobseeker_dashboard, {
-        through: "dashboard_job_listings",
-      });
+      this.hasMany(models.individual_jobseeker_dashboard);
       this.belongsTo(models.location, { foreignKey: "locationId" });
     }
   }
