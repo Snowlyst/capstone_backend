@@ -111,7 +111,7 @@ class UsersController extends BaseController {
       const output1 = await this.model.findAll({
         where: {
           approvedByAdmin: false,
-          userRoleId: [2, 3],
+          userRoleId: 2,
         },
         include: [
           {
@@ -197,7 +197,7 @@ class UsersController extends BaseController {
       const output1 = await this.model.findAll({
         where: {
           approvedByAdmin: true,
-          userRoleId: [2, 3],
+          userRoleId: 2,
         },
         include: [
           {
