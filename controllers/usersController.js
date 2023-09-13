@@ -20,7 +20,7 @@ class UsersController extends BaseController {
   async retrieveLogin(req, res) {
     const user = req.body;
     console.log(user);
-    const { given_name, family_name, email, role } = req.body;
+    const { given_name, family_name, email, role, picture } = req.body;
 
     try {
       const [checkedUser, created] = await this.model.findOrCreate({
@@ -31,6 +31,7 @@ class UsersController extends BaseController {
           email: email,
           userName: email,
           userRoleId: role,
+          avatarUrl: picture || null,
           approvedByAdmin: false,
         },
       });
@@ -99,6 +100,66 @@ class UsersController extends BaseController {
         ],
       });
       console.log(output);
+      return res.json(output);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json({ error: true, msg: err.message });
+    }
+  }
+
+  async editPersonalInformation(req, res) {
+    const { userId } = req.params;
+    const {
+      avatarUrl,
+      currentWorkStatus,
+      housingType,
+      mobileNumber,
+      monthlySalary,
+      occupation,
+      postalCode,
+      streetAddress,
+      unitNumber,
+    } = req.body.fieldValues;
+    let objToSend = {};
+    try {
+      await this.userPersonalDetailModel.update(
+        {
+          currentWorkStatus: currentWorkStatus,
+          housingType: housingType,
+          monthlySalary: monthlySalary,
+          occupation: occupation,
+          postalCode: postalCode,
+          streetAddress: streetAddress,
+          unitNumber: unitNumber,
+          mobileNumber: mobileNumber,
+        },
+        {
+          where: {
+            userId: userId,
+          },
+        }
+      );
+      if (avatarUrl !== null && avatarUrl !== "") {
+        await this.model.update(
+          {
+            avatarUrl: avatarUrl,
+          },
+          {
+            where: {
+              id: userId,
+            },
+          }
+        );
+      }
+
+      const output = await this.model.findByPk(userId, {
+        include: [
+          {
+            model: this.userPersonalDetailModel,
+          },
+        ],
+      });
+
       return res.json(output);
     } catch (err) {
       console.log(err);
