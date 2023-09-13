@@ -18,6 +18,12 @@ class UsersRouter {
       this.controller.getOnePersonalInformation.bind(this.controller)
     );
 
+    router.put(
+      "/editpersonalinfo/:userId",
+      this.jwtCheck,
+      this.controller.editPersonalInformation.bind(this.controller)
+    );
+
     router.post(
       "/userprofile/:userId",
       this.jwtCheck,
