@@ -119,8 +119,9 @@ class UsersController extends BaseController {
       postalCode,
       streetAddress,
       unitNumber,
+      linkedIn,
     } = req.body.fieldValues;
-    let objToSend = {};
+
     try {
       await this.userPersonalDetailModel.update(
         {
@@ -132,6 +133,7 @@ class UsersController extends BaseController {
           streetAddress: streetAddress,
           unitNumber: unitNumber,
           mobileNumber: mobileNumber,
+          linkedIn: linkedIn,
         },
         {
           where: {

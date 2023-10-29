@@ -95,6 +95,9 @@ module.exports = {
       additional_information: {
         type: Sequelize.STRING,
       },
+      linked_in: {
+        type: Sequelize.STRING,
+      },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,
