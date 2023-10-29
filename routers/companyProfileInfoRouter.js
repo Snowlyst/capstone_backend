@@ -20,6 +20,11 @@ class CompanyProfileInfoRouter {
       this.jwtCheck,
       this.controller.postNewJob.bind(this.controller)
     );
+    router.post(
+      "/createcompany",
+      this.jwtCheck,
+      this.controller.createCompany.bind(this.controller)
+    );
 
     router.get("/jobs/:jobId", this.controller.getOneJob.bind(this.controller));
 
