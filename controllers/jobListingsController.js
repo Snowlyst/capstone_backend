@@ -291,60 +291,44 @@ class JobListingsController extends BaseController {
       const mainTitle = $("h1").text();
 
       const puppeteerHtml = $(".show-more-less-html__markup").html();
+      console.log("Line 294");
       console.log(puppeteerHtml);
-      const objectsArray = [];
-      // let currentObject = {};
-      let index = 0;
-      let description = "";
+      let objects = {};
+      const trimmedHtml = puppeteerHtml.trim();
+      // let index = 0;
+      // let description = "";
 
-      // objectsArray.push({ description: puppeteerHtml });
-      // Split the HTML by </p> tags to extract paragraphs
-      const paragraphs = puppeteerHtml.split(/<\/p>/);
-      while (index < paragraphs.length) {
-        //       currentObject = {};
-        const paragraph = paragraphs[index];
-        const titleMatch = paragraph.match(/<strong>(.*?)<\/strong><p><br>/);
-        if (titleMatch) {
-          const nextParagraph = paragraphs[index + 1];
-          const title = titleMatch[1].replace(/<u>|<\/u>/g, "");
-          const content = nextParagraph
-            // .replace(/<[^>]*>/g, "")
-            // .replace(/<u>|<\/u>/g, "")
-            .trim();
-          // currentObject = {
-          //   title: `<p>${title}</p>`,
-          //   contents: `<p>${content}</p>`,
-          // };
+      // Split the HTML by <strong> tags to extract paragraphs
+      // const paragraphs = puppeteerHtml.split(/<strong>/);
+      // while (index < paragraphs.length) {
+      //   const paragraph = paragraphs[index];
+      //   const titleMatch = paragraph.match(/<strong>(.*?)<\/strong>/);
+      //   if (titleMatch) {
+      //     const nextParagraph = paragraphs[index + 1];
+      //     const title = titleMatch[1].replace(/<u>|<\/u>/g, "");
+      //     const content = nextParagraph.trim();
 
-          //Add title and content to description
-          description += `<p><strong>${title}</strong></p><p>${content}</p>`;
+      //     //Add title and content to description
+      //     description += `<p><strong>${title}</strong></p><p>${content}</p>`;
 
-          index += 2;
-        } else {
-          const contents = paragraph
-            .replace(/<[^>]*>/g, "")
-            // .replace(/<u>|<\/u>/g, "")
-            .trim();
-          if (contents !== "") {
-            // currentObject = {
-            //   title: null,
-            //   contents: `<p>${contents}</p>`,
-            // };
-            description += `<p>${contents}</p>`;
-          }
+      //     index += 2;
+      //   } else {
+      //     const contents = paragraph.replace(/<[^>]*>/g, "").trim();
+      //     if (contents !== "") {
+      //       description += `<p>${contents}</p>`;
+      //     }
 
-          index += 1;
-        }
-
-        console.log(objectsArray);
-        // if (currentObject !== null) {
-        //   objectsArray.push(currentObject);
-        // }
-      }
-      objectsArray.push({ mainTitle: mainTitle, description: description });
+      //     index += 1;
+      //   }
+      //   console.log("Line 323 Obj array");
+      //   console.log(objectsArray);
+      // }
+      objects = { mainTitle: mainTitle, description: trimmedHtml };
+      console.log("line 327");
+      console.log(objects);
       await browser.close();
 
-      res.status(200).send(objectsArray);
+      res.status(200).send(objects);
     } catch (error) {
       res.status(500).send({ error: true, msg: error.message });
     }

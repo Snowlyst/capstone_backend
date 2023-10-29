@@ -40,6 +40,7 @@ module.exports = (sequelize, DataTypes) => {
       physicalBarriersToRtw: DataTypes.STRING,
       psychosocialBarriersToRtw: DataTypes.STRING,
       additionalInformation: DataTypes.STRING,
+      linkedIn: DataTypes.STRING,
     },
     {
       sequelize,
