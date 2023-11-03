@@ -60,11 +60,6 @@ class UsersController extends BaseController {
         }
       }
 
-      // other statements for other info will go here if needed to be loaded into currUser at login
-      // else {
-
-      // }
-
       return res.json({ checkedUser });
     } catch (err) {
       console.log(err.message);
@@ -120,8 +115,9 @@ class UsersController extends BaseController {
       streetAddress,
       unitNumber,
       linkedIn,
+      defaultResumeUrl,
     } = req.body.fieldValues;
-
+    console.log("RESUME URL: ", defaultResumeUrl);
     try {
       await this.userPersonalDetailModel.update(
         {
@@ -134,6 +130,7 @@ class UsersController extends BaseController {
           unitNumber: unitNumber,
           mobileNumber: mobileNumber,
           linkedIn: linkedIn,
+          defaultResumeUrl: defaultResumeUrl,
         },
         {
           where: {
@@ -161,7 +158,6 @@ class UsersController extends BaseController {
           },
         ],
       });
-
       return res.json(output);
     } catch (err) {
       console.log(err);
