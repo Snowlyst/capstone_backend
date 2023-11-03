@@ -154,5 +154,39 @@ class CompanyProfileInfoController extends BaseController {
       res.status(400).json({ error: true, msg: error.message });
     }
   }
+
+  async createCompany(req, res) {
+    try {
+      const {
+        userId,
+        companyName,
+        companyLogo,
+        description,
+        address,
+        postalCode,
+        unitNumber,
+        bannerUrl,
+        establishmentDate,
+        websiteUrl,
+      } = req.body;
+      const output = await this.model.create({
+        userId: userId,
+        approvalByAdmin: false,
+        companyName: companyName,
+        companyLogo: companyLogo,
+        description: description,
+        address: address,
+        postalCode: postalCode,
+        unitNumber: unitNumber,
+        bannerUrl: bannerUrl,
+        establishmentDate: establishmentDate,
+        websiteUrl: websiteUrl,
+      });
+      res.status(200).json(output);
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({ error: true, msg: error.message });
+    }
+  }
 }
 module.exports = CompanyProfileInfoController;
