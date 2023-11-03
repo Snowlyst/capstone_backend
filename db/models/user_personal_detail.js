@@ -41,6 +41,7 @@ module.exports = (sequelize, DataTypes) => {
       psychosocialBarriersToRtw: DataTypes.STRING,
       additionalInformation: DataTypes.STRING,
       linkedIn: DataTypes.STRING,
+      defaultResumeUrl: DataTypes.STRING,
     },
     {
       sequelize,
