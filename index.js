@@ -1,16 +1,15 @@
 const express = require("express");
 const cors = require("cors");
-//onst axios = require("axios");
 
 require("dotenv").config();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 const app = express();
 
 // import middlewares
 const jwtCheck = require("./middlewares/jwtCheck");
 
 const corsOptions = {
-  origin: process.env.CORS_OPTIONS,
+  origin: process.env.CORS_OPTIONS || "https://capstoneverve.netlify.app",
 };
 // importing info from db area
 const db = require("./db/models/index");

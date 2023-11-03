@@ -45,6 +45,7 @@ module.exports = {
     username: process.env.USERNAME,
     password: process.env.PASSWORD,
     database: process.env.DATABASE,
+    port: process.env.DB_PORT,
     host: process.env.HOST,
     dialect: process.env.DIALECT,
     dialectOptions: {
